@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HappyCoffeeApp", "WinFormsApp1\HappyCoffeeApp.csproj", "{8F65E415-90A0-43DF-BA77-172F561F4B8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F65E415-90A0-43DF-BA77-172F561F4B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F65E415-90A0-43DF-BA77-172F561F4B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F65E415-90A0-43DF-BA77-172F561F4B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F65E415-90A0-43DF-BA77-172F561F4B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA25A7EB-D189-40A9-B3C8-5FE1800075B3}
+	EndGlobalSection
+EndGlobal
