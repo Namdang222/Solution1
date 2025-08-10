@@ -35,7 +35,7 @@
             dTP_ToDate = new DateTimePicker();
             dTP_FromDate = new DateTimePicker();
             panel1 = new Panel();
-            dataGridView1 = new DataGridView();
+            dGv_Total = new DataGridView();
             tcb_Drinks = new TabPage();
             panel6 = new Panel();
             btn_CheckDrinks = new Button();
@@ -57,30 +57,48 @@
             panel3 = new Panel();
             dgV_Drinks = new DataGridView();
             tcb_DrinksCategory = new TabPage();
-            tcb_Table = new TabPage();
-            tcb_Accounts = new TabPage();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            textBox1 = new TextBox();
-            panel7 = new Panel();
+            dGv_Category = new DataGridView();
+            btn_ViewCategory = new Button();
+            btn_EditCategory = new Button();
+            btn_DelCaregory = new Button();
+            btn_AddCategory = new Button();
             panel8 = new Panel();
-            numericUpDown1 = new NumericUpDown();
-            label5 = new Label();
-            comboBox1 = new ComboBox();
+            txt_DangMucCaregory = new TextBox();
             label6 = new Label();
-            label7 = new Label();
-            textBox2 = new TextBox();
             label8 = new Label();
             textBox3 = new TextBox();
-            dataGridView2 = new DataGridView();
+            tcb_Table = new TabPage();
+            dGv_taBle = new DataGridView();
+            btn_ViewTable = new Button();
+            btn_EditTable = new Button();
+            btn_DelTable = new Button();
+            btn_AddTable = new Button();
+            panel7 = new Panel();
+            cmb_TableStatus = new ComboBox();
+            label9 = new Label();
+            txt_TableName = new TextBox();
+            label5 = new Label();
+            label7 = new Label();
+            textBox2 = new TextBox();
+            tcb_Accounts = new TabPage();
+            btn_showAccCount = new Button();
+            btn_editAccount = new Button();
+            btn_delAccount = new Button();
+            btn_addAccount = new Button();
+            panel9 = new Panel();
+            txt_DisplayName = new TextBox();
+            label10 = new Label();
+            label11 = new Label();
+            txt_UserName = new TextBox();
+            dGv_accCount = new DataGridView();
+            label12 = new Label();
+            cmb_AccountType = new ComboBox();
+            btn_ResetPass = new Button();
             tbc_Admin.SuspendLayout();
             tcb_Bill.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dGv_Total).BeginInit();
             tcb_Drinks.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
@@ -89,10 +107,14 @@
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgV_Drinks).BeginInit();
             tcb_DrinksCategory.SuspendLayout();
-            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dGv_Category).BeginInit();
             panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            tcb_Table.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dGv_taBle).BeginInit();
+            panel7.SuspendLayout();
+            tcb_Accounts.SuspendLayout();
+            panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dGv_accCount).BeginInit();
             SuspendLayout();
             // 
             // tbc_Admin
@@ -155,20 +177,20 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(dataGridView1);
+            panel1.Controls.Add(dGv_Total);
             panel1.Location = new Point(6, 94);
             panel1.Name = "panel1";
             panel1.Size = new Size(869, 347);
             panel1.TabIndex = 0;
             // 
-            // dataGridView1
+            // dGv_Total
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(3, 3);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(863, 341);
-            dataGridView1.TabIndex = 0;
+            dGv_Total.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dGv_Total.Location = new Point(3, 3);
+            dGv_Total.Name = "dGv_Total";
+            dGv_Total.RowHeadersWidth = 51;
+            dGv_Total.Size = new Size(863, 341);
+            dGv_Total.TabIndex = 0;
             // 
             // tcb_Drinks
             // 
@@ -357,12 +379,11 @@
             // 
             // tcb_DrinksCategory
             // 
-            tcb_DrinksCategory.Controls.Add(dataGridView2);
-            tcb_DrinksCategory.Controls.Add(button1);
-            tcb_DrinksCategory.Controls.Add(button2);
-            tcb_DrinksCategory.Controls.Add(button3);
-            tcb_DrinksCategory.Controls.Add(button4);
-            tcb_DrinksCategory.Controls.Add(panel7);
+            tcb_DrinksCategory.Controls.Add(dGv_Category);
+            tcb_DrinksCategory.Controls.Add(btn_ViewCategory);
+            tcb_DrinksCategory.Controls.Add(btn_EditCategory);
+            tcb_DrinksCategory.Controls.Add(btn_DelCaregory);
+            tcb_DrinksCategory.Controls.Add(btn_AddCategory);
             tcb_DrinksCategory.Controls.Add(panel8);
             tcb_DrinksCategory.Location = new Point(4, 29);
             tcb_DrinksCategory.Name = "tcb_DrinksCategory";
@@ -372,95 +393,55 @@
             tcb_DrinksCategory.Text = "Danh mục";
             tcb_DrinksCategory.UseVisualStyleBackColor = true;
             // 
-            // tcb_Table
+            // dGv_Category
             // 
-            tcb_Table.Location = new Point(4, 29);
-            tcb_Table.Name = "tcb_Table";
-            tcb_Table.Padding = new Padding(3);
-            tcb_Table.Size = new Size(881, 447);
-            tcb_Table.TabIndex = 3;
-            tcb_Table.Text = "Bàn ngồi";
-            tcb_Table.UseVisualStyleBackColor = true;
+            dGv_Category.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dGv_Category.Location = new Point(10, 75);
+            dGv_Category.Name = "dGv_Category";
+            dGv_Category.RowHeadersWidth = 51;
+            dGv_Category.Size = new Size(502, 366);
+            dGv_Category.TabIndex = 10;
             // 
-            // tcb_Accounts
+            // btn_ViewCategory
             // 
-            tcb_Accounts.Location = new Point(4, 29);
-            tcb_Accounts.Name = "tcb_Accounts";
-            tcb_Accounts.Padding = new Padding(3);
-            tcb_Accounts.Size = new Size(881, 447);
-            tcb_Accounts.TabIndex = 4;
-            tcb_Accounts.Text = "Tài khoản";
-            tcb_Accounts.UseVisualStyleBackColor = true;
+            btn_ViewCategory.Location = new Point(306, 4);
+            btn_ViewCategory.Name = "btn_ViewCategory";
+            btn_ViewCategory.Size = new Size(94, 56);
+            btn_ViewCategory.TabIndex = 8;
+            btn_ViewCategory.Text = "Xem";
+            btn_ViewCategory.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btn_EditCategory
             // 
-            button1.Location = new Point(306, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 56);
-            button1.TabIndex = 8;
-            button1.Text = "Xem";
-            button1.UseVisualStyleBackColor = true;
+            btn_EditCategory.Location = new Point(206, 4);
+            btn_EditCategory.Name = "btn_EditCategory";
+            btn_EditCategory.Size = new Size(94, 56);
+            btn_EditCategory.TabIndex = 7;
+            btn_EditCategory.Text = "Sửa";
+            btn_EditCategory.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btn_DelCaregory
             // 
-            button2.Location = new Point(206, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 56);
-            button2.TabIndex = 7;
-            button2.Text = "Sửa";
-            button2.UseVisualStyleBackColor = true;
+            btn_DelCaregory.Location = new Point(104, 4);
+            btn_DelCaregory.Name = "btn_DelCaregory";
+            btn_DelCaregory.Size = new Size(94, 56);
+            btn_DelCaregory.TabIndex = 5;
+            btn_DelCaregory.Text = "Xóa";
+            btn_DelCaregory.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btn_AddCategory
             // 
-            button3.Location = new Point(104, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 56);
-            button3.TabIndex = 5;
-            button3.Text = "Xóa";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(4, 4);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 56);
-            button4.TabIndex = 4;
-            button4.Text = "Thêm";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(261, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 56);
-            button5.TabIndex = 2;
-            button5.Text = "Tìm";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(3, 18);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(252, 27);
-            textBox1.TabIndex = 3;
-            // 
-            // panel7
-            // 
-            panel7.Controls.Add(button5);
-            panel7.Controls.Add(textBox1);
-            panel7.Location = new Point(518, 7);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(358, 62);
-            panel7.TabIndex = 9;
+            btn_AddCategory.Location = new Point(4, 4);
+            btn_AddCategory.Name = "btn_AddCategory";
+            btn_AddCategory.Size = new Size(94, 56);
+            btn_AddCategory.TabIndex = 4;
+            btn_AddCategory.Text = "Thêm";
+            btn_AddCategory.UseVisualStyleBackColor = true;
             // 
             // panel8
             // 
-            panel8.Controls.Add(numericUpDown1);
-            panel8.Controls.Add(label5);
-            panel8.Controls.Add(comboBox1);
+            panel8.Controls.Add(txt_DangMucCaregory);
             panel8.Controls.Add(label6);
-            panel8.Controls.Add(label7);
-            panel8.Controls.Add(textBox2);
             panel8.Controls.Add(label8);
             panel8.Controls.Add(textBox3);
             panel8.Location = new Point(518, 75);
@@ -468,55 +449,22 @@
             panel8.Size = new Size(358, 367);
             panel8.TabIndex = 6;
             // 
-            // numericUpDown1
+            // txt_DangMucCaregory
             // 
-            numericUpDown1.Location = new Point(98, 133);
-            numericUpDown1.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(241, 27);
-            numericUpDown1.TabIndex = 11;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(20, 135);
-            label5.Name = "label5";
-            label5.Size = new Size(34, 20);
-            label5.TabIndex = 10;
-            label5.Text = "Giá:";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(98, 90);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(241, 28);
-            comboBox1.TabIndex = 9;
+            txt_DangMucCaregory.Location = new Point(101, 57);
+            txt_DangMucCaregory.Name = "txt_DangMucCaregory";
+            txt_DangMucCaregory.ReadOnly = true;
+            txt_DangMucCaregory.Size = new Size(241, 27);
+            txt_DangMucCaregory.TabIndex = 9;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(16, 93);
+            label6.Location = new Point(16, 60);
             label6.Name = "label6";
             label6.Size = new Size(79, 20);
             label6.TabIndex = 8;
             label6.Text = "Danh mục:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(16, 55);
-            label7.Name = "label7";
-            label7.Size = new Size(83, 20);
-            label7.TabIndex = 6;
-            label7.Text = "Tên Coffee:";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(98, 52);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(241, 27);
-            textBox2.TabIndex = 7;
             // 
             // label8
             // 
@@ -535,14 +483,265 @@
             textBox3.Size = new Size(241, 27);
             textBox3.TabIndex = 5;
             // 
-            // dataGridView2
+            // tcb_Table
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(10, 75);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(502, 366);
-            dataGridView2.TabIndex = 10;
+            tcb_Table.Controls.Add(dGv_taBle);
+            tcb_Table.Controls.Add(btn_ViewTable);
+            tcb_Table.Controls.Add(btn_EditTable);
+            tcb_Table.Controls.Add(btn_DelTable);
+            tcb_Table.Controls.Add(btn_AddTable);
+            tcb_Table.Controls.Add(panel7);
+            tcb_Table.Location = new Point(4, 29);
+            tcb_Table.Name = "tcb_Table";
+            tcb_Table.Padding = new Padding(3);
+            tcb_Table.Size = new Size(881, 447);
+            tcb_Table.TabIndex = 3;
+            tcb_Table.Text = "Bàn ngồi";
+            tcb_Table.UseVisualStyleBackColor = true;
+            // 
+            // dGv_taBle
+            // 
+            dGv_taBle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dGv_taBle.Location = new Point(10, 75);
+            dGv_taBle.Name = "dGv_taBle";
+            dGv_taBle.RowHeadersWidth = 51;
+            dGv_taBle.Size = new Size(502, 366);
+            dGv_taBle.TabIndex = 16;
+            // 
+            // btn_ViewTable
+            // 
+            btn_ViewTable.Location = new Point(306, 4);
+            btn_ViewTable.Name = "btn_ViewTable";
+            btn_ViewTable.Size = new Size(94, 56);
+            btn_ViewTable.TabIndex = 15;
+            btn_ViewTable.Text = "Xem";
+            btn_ViewTable.UseVisualStyleBackColor = true;
+            // 
+            // btn_EditTable
+            // 
+            btn_EditTable.Location = new Point(206, 4);
+            btn_EditTable.Name = "btn_EditTable";
+            btn_EditTable.Size = new Size(94, 56);
+            btn_EditTable.TabIndex = 14;
+            btn_EditTable.Text = "Sửa";
+            btn_EditTable.UseVisualStyleBackColor = true;
+            // 
+            // btn_DelTable
+            // 
+            btn_DelTable.Location = new Point(104, 4);
+            btn_DelTable.Name = "btn_DelTable";
+            btn_DelTable.Size = new Size(94, 56);
+            btn_DelTable.TabIndex = 12;
+            btn_DelTable.Text = "Xóa";
+            btn_DelTable.UseVisualStyleBackColor = true;
+            // 
+            // btn_AddTable
+            // 
+            btn_AddTable.Location = new Point(4, 4);
+            btn_AddTable.Name = "btn_AddTable";
+            btn_AddTable.Size = new Size(94, 56);
+            btn_AddTable.TabIndex = 11;
+            btn_AddTable.Text = "Thêm";
+            btn_AddTable.UseVisualStyleBackColor = true;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(cmb_TableStatus);
+            panel7.Controls.Add(label9);
+            panel7.Controls.Add(txt_TableName);
+            panel7.Controls.Add(label5);
+            panel7.Controls.Add(label7);
+            panel7.Controls.Add(textBox2);
+            panel7.Location = new Point(518, 75);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(358, 367);
+            panel7.TabIndex = 13;
+            // 
+            // cmb_TableStatus
+            // 
+            cmb_TableStatus.FormattingEnabled = true;
+            cmb_TableStatus.Location = new Point(101, 95);
+            cmb_TableStatus.Name = "cmb_TableStatus";
+            cmb_TableStatus.Size = new Size(238, 28);
+            cmb_TableStatus.TabIndex = 11;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(16, 103);
+            label9.Name = "label9";
+            label9.Size = new Size(78, 20);
+            label9.TabIndex = 10;
+            label9.Text = "Trạng thái:";
+            // 
+            // txt_TableName
+            // 
+            txt_TableName.Location = new Point(101, 57);
+            txt_TableName.Name = "txt_TableName";
+            txt_TableName.ReadOnly = true;
+            txt_TableName.Size = new Size(238, 27);
+            txt_TableName.TabIndex = 9;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(16, 60);
+            label5.Name = "label5";
+            label5.Size = new Size(64, 20);
+            label5.TabIndex = 8;
+            label5.Text = "Tên bàn:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(16, 22);
+            label7.Name = "label7";
+            label7.Size = new Size(27, 20);
+            label7.TabIndex = 4;
+            label7.Text = "ID:";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(98, 19);
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(241, 27);
+            textBox2.TabIndex = 5;
+            // 
+            // tcb_Accounts
+            // 
+            tcb_Accounts.Controls.Add(dGv_accCount);
+            tcb_Accounts.Controls.Add(panel9);
+            tcb_Accounts.Controls.Add(btn_showAccCount);
+            tcb_Accounts.Controls.Add(btn_editAccount);
+            tcb_Accounts.Controls.Add(btn_delAccount);
+            tcb_Accounts.Controls.Add(btn_addAccount);
+            tcb_Accounts.Location = new Point(4, 29);
+            tcb_Accounts.Name = "tcb_Accounts";
+            tcb_Accounts.Padding = new Padding(3);
+            tcb_Accounts.Size = new Size(881, 447);
+            tcb_Accounts.TabIndex = 4;
+            tcb_Accounts.Text = "Tài khoản";
+            tcb_Accounts.UseVisualStyleBackColor = true;
+            // 
+            // btn_showAccCount
+            // 
+            btn_showAccCount.Location = new Point(308, 6);
+            btn_showAccCount.Name = "btn_showAccCount";
+            btn_showAccCount.Size = new Size(94, 56);
+            btn_showAccCount.TabIndex = 19;
+            btn_showAccCount.Text = "Xem";
+            btn_showAccCount.UseVisualStyleBackColor = true;
+            // 
+            // btn_editAccount
+            // 
+            btn_editAccount.Location = new Point(208, 6);
+            btn_editAccount.Name = "btn_editAccount";
+            btn_editAccount.Size = new Size(94, 56);
+            btn_editAccount.TabIndex = 18;
+            btn_editAccount.Text = "Sửa";
+            btn_editAccount.UseVisualStyleBackColor = true;
+            // 
+            // btn_delAccount
+            // 
+            btn_delAccount.Location = new Point(106, 6);
+            btn_delAccount.Name = "btn_delAccount";
+            btn_delAccount.Size = new Size(94, 56);
+            btn_delAccount.TabIndex = 17;
+            btn_delAccount.Text = "Xóa";
+            btn_delAccount.UseVisualStyleBackColor = true;
+            // 
+            // btn_addAccount
+            // 
+            btn_addAccount.Location = new Point(6, 6);
+            btn_addAccount.Name = "btn_addAccount";
+            btn_addAccount.Size = new Size(94, 56);
+            btn_addAccount.TabIndex = 16;
+            btn_addAccount.Text = "Thêm";
+            btn_addAccount.UseVisualStyleBackColor = true;
+            // 
+            // panel9
+            // 
+            panel9.Controls.Add(btn_ResetPass);
+            panel9.Controls.Add(cmb_AccountType);
+            panel9.Controls.Add(label12);
+            panel9.Controls.Add(txt_DisplayName);
+            panel9.Controls.Add(label10);
+            panel9.Controls.Add(label11);
+            panel9.Controls.Add(txt_UserName);
+            panel9.Location = new Point(517, 74);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(358, 367);
+            panel9.TabIndex = 20;
+            // 
+            // txt_DisplayName
+            // 
+            txt_DisplayName.Location = new Point(122, 57);
+            txt_DisplayName.Name = "txt_DisplayName";
+            txt_DisplayName.ReadOnly = true;
+            txt_DisplayName.Size = new Size(217, 27);
+            txt_DisplayName.TabIndex = 9;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(16, 60);
+            label10.Name = "label10";
+            label10.Size = new Size(88, 20);
+            label10.TabIndex = 8;
+            label10.Text = "Tên hiển thị:";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(16, 22);
+            label11.Name = "label11";
+            label11.Size = new Size(100, 20);
+            label11.TabIndex = 4;
+            label11.Text = "Tên tài khoản:";
+            // 
+            // txt_UserName
+            // 
+            txt_UserName.Location = new Point(122, 19);
+            txt_UserName.Name = "txt_UserName";
+            txt_UserName.ReadOnly = true;
+            txt_UserName.Size = new Size(217, 27);
+            txt_UserName.TabIndex = 5;
+            // 
+            // dGv_accCount
+            // 
+            dGv_accCount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dGv_accCount.Location = new Point(6, 74);
+            dGv_accCount.Name = "dGv_accCount";
+            dGv_accCount.RowHeadersWidth = 51;
+            dGv_accCount.Size = new Size(502, 366);
+            dGv_accCount.TabIndex = 21;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(16, 96);
+            label12.Name = "label12";
+            label12.Size = new Size(105, 20);
+            label12.TabIndex = 10;
+            label12.Text = "Loại tài khoản:";
+            // 
+            // cmb_AccountType
+            // 
+            cmb_AccountType.FormattingEnabled = true;
+            cmb_AccountType.Location = new Point(122, 93);
+            cmb_AccountType.Name = "cmb_AccountType";
+            cmb_AccountType.Size = new Size(217, 28);
+            cmb_AccountType.TabIndex = 11;
+            // 
+            // btn_ResetPass
+            // 
+            btn_ResetPass.Location = new Point(208, 127);
+            btn_ResetPass.Name = "btn_ResetPass";
+            btn_ResetPass.Size = new Size(131, 56);
+            btn_ResetPass.TabIndex = 22;
+            btn_ResetPass.Text = "Đặt lại mật khẩu";
+            btn_ResetPass.UseVisualStyleBackColor = true;
             // 
             // Admin
             // 
@@ -553,11 +752,12 @@
             Name = "Admin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";
+            Load += Admin_Load;
             tbc_Admin.ResumeLayout(false);
             tcb_Bill.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dGv_Total).EndInit();
             tcb_Drinks.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
@@ -568,12 +768,17 @@
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgV_Drinks).EndInit();
             tcb_DrinksCategory.ResumeLayout(false);
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dGv_Category).EndInit();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            tcb_Table.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dGv_taBle).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            tcb_Accounts.ResumeLayout(false);
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dGv_accCount).EndInit();
             ResumeLayout(false);
         }
 
@@ -588,7 +793,7 @@
         private Panel panel2;
         private DateTimePicker dTP_FromDate;
         private Panel panel1;
-        private DataGridView dataGridView1;
+        private DataGridView dGv_Total;
         private Button btn_ViewBill;
         private DateTimePicker dTP_ToDate;
         private Panel panel6;
@@ -610,22 +815,40 @@
         private Label label4;
         private ComboBox cmb_DrinksCategory;
         private Label label3;
-        private DataGridView dataGridView2;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Panel panel7;
-        private Button button5;
-        private TextBox textBox1;
+        private DataGridView dGv_Category;
+        private Button btn_ViewCategory;
+        private Button btn_EditCategory;
+        private Button btn_DelCaregory;
+        private Button btn_AddCategory;
         private Panel panel8;
-        private NumericUpDown numericUpDown1;
-        private Label label5;
-        private ComboBox comboBox1;
         private Label label6;
-        private Label label7;
-        private TextBox textBox2;
         private Label label8;
         private TextBox textBox3;
+        private TextBox txt_DangMucCaregory;
+        private DataGridView dGv_taBle;
+        private Button btn_ViewTable;
+        private Button btn_EditTable;
+        private Button btn_DelTable;
+        private Button btn_AddTable;
+        private Panel panel7;
+        private TextBox txt_TableName;
+        private Label label5;
+        private Label label7;
+        private TextBox textBox2;
+        private ComboBox cmb_TableStatus;
+        private Label label9;
+        private DataGridView dGv_accCount;
+        private Panel panel9;
+        private TextBox txt_DisplayName;
+        private Label label10;
+        private Label label11;
+        private TextBox txt_UserName;
+        private Button btn_showAccCount;
+        private Button btn_editAccount;
+        private Button btn_delAccount;
+        private Button btn_addAccount;
+        private ComboBox cmb_AccountType;
+        private Label label12;
+        private Button btn_ResetPass;
     }
 }
