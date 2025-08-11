@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 
 namespace HappyCoffeeApp
 {
@@ -25,8 +26,13 @@ namespace HappyCoffeeApp
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            string username = txt_Namelogin.Text;
-            string password = txt_Passlogin.Text;
+            if (string.IsNullOrWhiteSpace(txt_Namelogin.Text) || string.IsNullOrWhiteSpace(txt_Passlogin.Text))
+            {
+                MessageBox.Show("Vui lòng nhập tên đăng nhập và mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string username = txt_Namelogin.Text.Trim();
+            string password = txt_Passlogin.Text.Trim();
             if (login(username,password))
             {
                 TableManager tableManager = new TableManager();
@@ -41,11 +47,18 @@ namespace HappyCoffeeApp
         }
         bool login(string username, string password)
         {
-            return AccountDAO.Instance.Login(username, password);
+            string query = "SELECT COUNT(*) FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { username, password });
+            return Convert.ToInt32(result) > 0;
+
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Bạn có chắc chắn muốn thoát không?", "Thông báo", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
             Application.Exit();
         }
 
@@ -54,6 +67,10 @@ namespace HappyCoffeeApp
             if (MessageBox.Show("Bạn có chắc chắn muốn thoát không?", "Thông báo", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
             {
                 e.Cancel = true;
+            }
+            else
+            {
+                Application.Exit();
             }
         }
     }

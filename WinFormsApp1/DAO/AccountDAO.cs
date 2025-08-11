@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,12 @@ namespace HappyCoffeeApp.DAO
             private set { instance = value; }
         }
         private AccountDAO() { }
-        public bool Login(string username, string password)
+
+        public bool login(string username, string password)
         {
-            return false;
+            string query = "SELECT COUNT(*) FROM Users WHERE Username = @username AND Password = @password";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { username, password });
+            return Convert.ToInt32(result) > 0;
         }
     }
 }

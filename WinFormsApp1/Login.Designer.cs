@@ -114,6 +114,7 @@
             Controls.Add(label1);
             Controls.Add(pic_logo);
             Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)pic_logo).EndInit();
             ResumeLayout(false);
