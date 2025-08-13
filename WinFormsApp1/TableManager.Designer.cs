@@ -136,14 +136,14 @@
             // thôngTinCáNhânToolStripMenuItem
             // 
             thôngTinCáNhânToolStripMenuItem.Name = "thôngTinCáNhânToolStripMenuItem";
-            thôngTinCáNhânToolStripMenuItem.Size = new Size(224, 26);
+            thôngTinCáNhânToolStripMenuItem.Size = new Size(210, 26);
             thôngTinCáNhânToolStripMenuItem.Text = "Thông tin cá nhân";
             thôngTinCáNhânToolStripMenuItem.Click += thôngTinCáNhânToolStripMenuItem_Click;
             // 
             // đăngXuấtToolStripMenuItem
             // 
             đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            đăngXuấtToolStripMenuItem.Size = new Size(224, 26);
+            đăngXuấtToolStripMenuItem.Size = new Size(210, 26);
             đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             đăngXuấtToolStripMenuItem.Click += đăngXuấtToolStripMenuItem_Click;
             // 
@@ -210,6 +210,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(884, 512);
             Controls.Add(fLP_Table);
             Controls.Add(panel4);

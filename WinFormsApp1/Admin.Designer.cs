@@ -81,19 +81,19 @@
             label7 = new Label();
             textBox2 = new TextBox();
             tcb_Accounts = new TabPage();
-            btn_showAccCount = new Button();
-            btn_editAccount = new Button();
-            btn_delAccount = new Button();
-            btn_addAccount = new Button();
+            dGv_accCount = new DataGridView();
             panel9 = new Panel();
+            btn_ResetPass = new Button();
+            cmb_AccountType = new ComboBox();
+            label12 = new Label();
             txt_DisplayName = new TextBox();
             label10 = new Label();
             label11 = new Label();
             txt_UserName = new TextBox();
-            dGv_accCount = new DataGridView();
-            label12 = new Label();
-            cmb_AccountType = new ComboBox();
-            btn_ResetPass = new Button();
+            btn_showAccCount = new Button();
+            btn_editAccount = new Button();
+            btn_delAccount = new Button();
+            btn_addAccount = new Button();
             tbc_Admin.SuspendLayout();
             tcb_Bill.SuspendLayout();
             panel2.SuspendLayout();
@@ -113,8 +113,8 @@
             ((System.ComponentModel.ISupportInitialize)dGv_taBle).BeginInit();
             panel7.SuspendLayout();
             tcb_Accounts.SuspendLayout();
-            panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dGv_accCount).BeginInit();
+            panel9.SuspendLayout();
             SuspendLayout();
             // 
             // tbc_Admin
@@ -191,6 +191,7 @@
             dGv_Total.RowHeadersWidth = 51;
             dGv_Total.Size = new Size(863, 341);
             dGv_Total.TabIndex = 0;
+            dGv_Total.CellContentClick += dGv_Total_CellContentClick;
             // 
             // tcb_Drinks
             // 
@@ -624,6 +625,89 @@
             tcb_Accounts.Text = "Tài khoản";
             tcb_Accounts.UseVisualStyleBackColor = true;
             // 
+            // dGv_accCount
+            // 
+            dGv_accCount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dGv_accCount.Location = new Point(6, 74);
+            dGv_accCount.Name = "dGv_accCount";
+            dGv_accCount.RowHeadersWidth = 51;
+            dGv_accCount.Size = new Size(502, 366);
+            dGv_accCount.TabIndex = 21;
+            // 
+            // panel9
+            // 
+            panel9.Controls.Add(btn_ResetPass);
+            panel9.Controls.Add(cmb_AccountType);
+            panel9.Controls.Add(label12);
+            panel9.Controls.Add(txt_DisplayName);
+            panel9.Controls.Add(label10);
+            panel9.Controls.Add(label11);
+            panel9.Controls.Add(txt_UserName);
+            panel9.Location = new Point(517, 74);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(358, 367);
+            panel9.TabIndex = 20;
+            // 
+            // btn_ResetPass
+            // 
+            btn_ResetPass.Location = new Point(208, 127);
+            btn_ResetPass.Name = "btn_ResetPass";
+            btn_ResetPass.Size = new Size(131, 56);
+            btn_ResetPass.TabIndex = 22;
+            btn_ResetPass.Text = "Đặt lại mật khẩu";
+            btn_ResetPass.UseVisualStyleBackColor = true;
+            // 
+            // cmb_AccountType
+            // 
+            cmb_AccountType.FormattingEnabled = true;
+            cmb_AccountType.Location = new Point(122, 93);
+            cmb_AccountType.Name = "cmb_AccountType";
+            cmb_AccountType.Size = new Size(217, 28);
+            cmb_AccountType.TabIndex = 11;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(16, 96);
+            label12.Name = "label12";
+            label12.Size = new Size(105, 20);
+            label12.TabIndex = 10;
+            label12.Text = "Loại tài khoản:";
+            // 
+            // txt_DisplayName
+            // 
+            txt_DisplayName.Location = new Point(122, 57);
+            txt_DisplayName.Name = "txt_DisplayName";
+            txt_DisplayName.ReadOnly = true;
+            txt_DisplayName.Size = new Size(217, 27);
+            txt_DisplayName.TabIndex = 9;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(16, 60);
+            label10.Name = "label10";
+            label10.Size = new Size(88, 20);
+            label10.TabIndex = 8;
+            label10.Text = "Tên hiển thị:";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(16, 22);
+            label11.Name = "label11";
+            label11.Size = new Size(100, 20);
+            label11.TabIndex = 4;
+            label11.Text = "Tên tài khoản:";
+            // 
+            // txt_UserName
+            // 
+            txt_UserName.Location = new Point(122, 19);
+            txt_UserName.Name = "txt_UserName";
+            txt_UserName.ReadOnly = true;
+            txt_UserName.Size = new Size(217, 27);
+            txt_UserName.TabIndex = 5;
+            // 
             // btn_showAccCount
             // 
             btn_showAccCount.Location = new Point(308, 6);
@@ -660,89 +744,6 @@
             btn_addAccount.Text = "Thêm";
             btn_addAccount.UseVisualStyleBackColor = true;
             // 
-            // panel9
-            // 
-            panel9.Controls.Add(btn_ResetPass);
-            panel9.Controls.Add(cmb_AccountType);
-            panel9.Controls.Add(label12);
-            panel9.Controls.Add(txt_DisplayName);
-            panel9.Controls.Add(label10);
-            panel9.Controls.Add(label11);
-            panel9.Controls.Add(txt_UserName);
-            panel9.Location = new Point(517, 74);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(358, 367);
-            panel9.TabIndex = 20;
-            // 
-            // txt_DisplayName
-            // 
-            txt_DisplayName.Location = new Point(122, 57);
-            txt_DisplayName.Name = "txt_DisplayName";
-            txt_DisplayName.ReadOnly = true;
-            txt_DisplayName.Size = new Size(217, 27);
-            txt_DisplayName.TabIndex = 9;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(16, 60);
-            label10.Name = "label10";
-            label10.Size = new Size(88, 20);
-            label10.TabIndex = 8;
-            label10.Text = "Tên hiển thị:";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(16, 22);
-            label11.Name = "label11";
-            label11.Size = new Size(100, 20);
-            label11.TabIndex = 4;
-            label11.Text = "Tên tài khoản:";
-            // 
-            // txt_UserName
-            // 
-            txt_UserName.Location = new Point(122, 19);
-            txt_UserName.Name = "txt_UserName";
-            txt_UserName.ReadOnly = true;
-            txt_UserName.Size = new Size(217, 27);
-            txt_UserName.TabIndex = 5;
-            // 
-            // dGv_accCount
-            // 
-            dGv_accCount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dGv_accCount.Location = new Point(6, 74);
-            dGv_accCount.Name = "dGv_accCount";
-            dGv_accCount.RowHeadersWidth = 51;
-            dGv_accCount.Size = new Size(502, 366);
-            dGv_accCount.TabIndex = 21;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(16, 96);
-            label12.Name = "label12";
-            label12.Size = new Size(105, 20);
-            label12.TabIndex = 10;
-            label12.Text = "Loại tài khoản:";
-            // 
-            // cmb_AccountType
-            // 
-            cmb_AccountType.FormattingEnabled = true;
-            cmb_AccountType.Location = new Point(122, 93);
-            cmb_AccountType.Name = "cmb_AccountType";
-            cmb_AccountType.Size = new Size(217, 28);
-            cmb_AccountType.TabIndex = 11;
-            // 
-            // btn_ResetPass
-            // 
-            btn_ResetPass.Location = new Point(208, 127);
-            btn_ResetPass.Name = "btn_ResetPass";
-            btn_ResetPass.Size = new Size(131, 56);
-            btn_ResetPass.TabIndex = 22;
-            btn_ResetPass.Text = "Đặt lại mật khẩu";
-            btn_ResetPass.UseVisualStyleBackColor = true;
-            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -776,9 +777,9 @@
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             tcb_Accounts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dGv_accCount).EndInit();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dGv_accCount).EndInit();
             ResumeLayout(false);
         }
 

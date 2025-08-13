@@ -21,8 +21,16 @@ namespace HappyCoffeeApp
         public Admin()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
+
         private void Admin_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void dGv_Total_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
