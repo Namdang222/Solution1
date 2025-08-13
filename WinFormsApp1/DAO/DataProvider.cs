@@ -21,9 +21,8 @@ namespace HappyCoffeeApp.DAO
             return instance;
         }
     }
+        private DataProvider(){}
         private string connectionString = "Data Source=Matilda;Initial Catalog=PRO131;Integrated Security=True;Trust Server Certificate=True";
-
-
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable dt = new DataTable();

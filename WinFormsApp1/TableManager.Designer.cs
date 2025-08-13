@@ -41,6 +41,10 @@
             đăngXuấtToolStripMenuItem = new ToolStripMenuItem();
             panel3 = new Panel();
             lsv_Bill = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
             panel4 = new Panel();
             num_Count = new NumericUpDown();
             btn_Add = new Button();
@@ -61,50 +65,56 @@
             panel2.Controls.Add(numericUpDown1);
             panel2.Controls.Add(btn_Discount);
             panel2.Controls.Add(btn_Check);
-            panel2.Location = new Point(473, 395);
+            panel2.Location = new Point(414, 296);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(399, 105);
+            panel2.Size = new Size(349, 79);
             panel2.TabIndex = 1;
             // 
             // cmb_Switch
             // 
             cmb_Switch.FormattingEnabled = true;
-            cmb_Switch.Location = new Point(6, 62);
+            cmb_Switch.Location = new Point(5, 46);
+            cmb_Switch.Margin = new Padding(3, 2, 3, 2);
             cmb_Switch.Name = "cmb_Switch";
-            cmb_Switch.Size = new Size(94, 28);
+            cmb_Switch.Size = new Size(83, 23);
             cmb_Switch.TabIndex = 3;
             // 
             // btn_SwitchTable
             // 
-            btn_SwitchTable.Location = new Point(6, 13);
+            btn_SwitchTable.Location = new Point(5, 10);
+            btn_SwitchTable.Margin = new Padding(3, 2, 3, 2);
             btn_SwitchTable.Name = "btn_SwitchTable";
-            btn_SwitchTable.Size = new Size(94, 43);
+            btn_SwitchTable.Size = new Size(82, 32);
             btn_SwitchTable.TabIndex = 4;
             btn_SwitchTable.Text = "Chuyển bàn";
             btn_SwitchTable.UseVisualStyleBackColor = true;
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(191, 62);
+            numericUpDown1.Location = new Point(167, 46);
+            numericUpDown1.Margin = new Padding(3, 2, 3, 2);
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(94, 27);
+            numericUpDown1.Size = new Size(82, 23);
             numericUpDown1.TabIndex = 3;
             numericUpDown1.TextAlign = HorizontalAlignment.Center;
             // 
             // btn_Discount
             // 
-            btn_Discount.Location = new Point(191, 13);
+            btn_Discount.Location = new Point(167, 10);
+            btn_Discount.Margin = new Padding(3, 2, 3, 2);
             btn_Discount.Name = "btn_Discount";
-            btn_Discount.Size = new Size(94, 43);
+            btn_Discount.Size = new Size(82, 32);
             btn_Discount.TabIndex = 3;
             btn_Discount.Text = "Giảm giá";
             btn_Discount.UseVisualStyleBackColor = true;
             // 
             // btn_Check
             // 
-            btn_Check.Location = new Point(291, 13);
+            btn_Check.Location = new Point(255, 10);
+            btn_Check.Margin = new Padding(3, 2, 3, 2);
             btn_Check.Name = "btn_Check";
-            btn_Check.Size = new Size(94, 76);
+            btn_Check.Size = new Size(82, 57);
             btn_Check.TabIndex = 2;
             btn_Check.Text = "Thanh toán";
             btn_Check.UseVisualStyleBackColor = true;
@@ -115,14 +125,15 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { adminToolStripMenuItem, thôngTinToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(884, 28);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(774, 24);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
             // adminToolStripMenuItem
             // 
             adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            adminToolStripMenuItem.Size = new Size(67, 24);
+            adminToolStripMenuItem.Size = new Size(55, 20);
             adminToolStripMenuItem.Text = "Admin";
             adminToolStripMenuItem.Click += adminToolStripMenuItem_Click;
             // 
@@ -130,63 +141,90 @@
             // 
             thôngTinToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { thôngTinCáNhânToolStripMenuItem, đăngXuấtToolStripMenuItem });
             thôngTinToolStripMenuItem.Name = "thôngTinToolStripMenuItem";
-            thôngTinToolStripMenuItem.Size = new Size(86, 24);
+            thôngTinToolStripMenuItem.Size = new Size(70, 20);
             thôngTinToolStripMenuItem.Text = "Thông tin";
             // 
             // thôngTinCáNhânToolStripMenuItem
             // 
             thôngTinCáNhânToolStripMenuItem.Name = "thôngTinCáNhânToolStripMenuItem";
-            thôngTinCáNhânToolStripMenuItem.Size = new Size(224, 26);
+            thôngTinCáNhânToolStripMenuItem.Size = new Size(170, 22);
             thôngTinCáNhânToolStripMenuItem.Text = "Thông tin cá nhân";
             thôngTinCáNhânToolStripMenuItem.Click += thôngTinCáNhânToolStripMenuItem_Click;
             // 
             // đăngXuấtToolStripMenuItem
             // 
             đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            đăngXuấtToolStripMenuItem.Size = new Size(224, 26);
+            đăngXuấtToolStripMenuItem.Size = new Size(170, 22);
             đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             đăngXuấtToolStripMenuItem.Click += đăngXuấtToolStripMenuItem_Click;
             // 
             // panel3
             // 
             panel3.Controls.Add(lsv_Bill);
-            panel3.Location = new Point(473, 119);
+            panel3.Location = new Point(414, 89);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(399, 270);
+            panel3.Size = new Size(349, 202);
             panel3.TabIndex = 3;
             // 
             // lsv_Bill
             // 
-            lsv_Bill.Location = new Point(3, 3);
+            lsv_Bill.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
+            lsv_Bill.GridLines = true;
+            lsv_Bill.Location = new Point(3, 2);
+            lsv_Bill.Margin = new Padding(3, 2, 3, 2);
             lsv_Bill.Name = "lsv_Bill";
-            lsv_Bill.Size = new Size(393, 343);
+            lsv_Bill.Size = new Size(344, 198);
             lsv_Bill.TabIndex = 0;
             lsv_Bill.UseCompatibleStateImageBehavior = false;
+            lsv_Bill.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Tên món";
+            columnHeader1.Width = 100;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Số lượng";
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Đơn giá";
+            columnHeader3.Width = 90;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Thành tiền";
+            columnHeader4.Width = 90;
             // 
             // panel4
             // 
             panel4.Controls.Add(num_Count);
             panel4.Controls.Add(btn_Add);
             panel4.Controls.Add(cmb_Category);
-            panel4.Location = new Point(476, 31);
+            panel4.Location = new Point(416, 23);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(393, 82);
+            panel4.Size = new Size(344, 62);
             panel4.TabIndex = 4;
             // 
             // num_Count
             // 
-            num_Count.Location = new Point(324, 29);
+            num_Count.Location = new Point(284, 22);
+            num_Count.Margin = new Padding(3, 2, 3, 2);
             num_Count.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
             num_Count.Name = "num_Count";
-            num_Count.Size = new Size(58, 27);
+            num_Count.Size = new Size(51, 23);
             num_Count.TabIndex = 2;
             num_Count.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btn_Add
             // 
-            btn_Add.Location = new Point(224, 3);
+            btn_Add.Location = new Point(196, 2);
+            btn_Add.Margin = new Padding(3, 2, 3, 2);
             btn_Add.Name = "btn_Add";
-            btn_Add.Size = new Size(94, 76);
+            btn_Add.Size = new Size(82, 57);
             btn_Add.TabIndex = 1;
             btn_Add.Text = "Thêm món";
             btn_Add.UseVisualStyleBackColor = true;
@@ -194,29 +232,32 @@
             // cmb_Category
             // 
             cmb_Category.FormattingEnabled = true;
-            cmb_Category.Location = new Point(3, 3);
+            cmb_Category.Location = new Point(3, 2);
+            cmb_Category.Margin = new Padding(3, 2, 3, 2);
             cmb_Category.Name = "cmb_Category";
-            cmb_Category.Size = new Size(151, 28);
+            cmb_Category.Size = new Size(133, 23);
             cmb_Category.TabIndex = 0;
             // 
             // fLP_Table
             // 
-            fLP_Table.Location = new Point(12, 34);
+            fLP_Table.Location = new Point(10, 26);
+            fLP_Table.Margin = new Padding(3, 2, 3, 2);
             fLP_Table.Name = "fLP_Table";
-            fLP_Table.Size = new Size(455, 466);
+            fLP_Table.Size = new Size(398, 350);
             fLP_Table.TabIndex = 5;
             // 
             // TableManager
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 512);
+            ClientSize = new Size(774, 384);
             Controls.Add(fLP_Table);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TableManager";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TableManager";
@@ -250,5 +291,9 @@
         private Button btn_SwitchTable;
         private NumericUpDown numericUpDown1;
         private Button btn_Discount;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
     }
 }
