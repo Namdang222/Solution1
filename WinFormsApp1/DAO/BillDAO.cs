@@ -20,18 +20,18 @@ namespace HappyCoffeeApp.DAO
         private BillDAO() { }
         public int GetUncheckBillIDByTableID(int id)
         {
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM dbo.Bill WHERE idTable = " + id +" AND status = 0");
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM HoaDon WHERE MaBan = " + id + " AND TongTien = 0");
 
             if (data.Rows.Count > 0)
             {
                 Bill bill = new Bill(data.Rows[0]);
-                return bill.ID;
+                return bill.MaHD;
             }
             return -1;
         }
         public void CheckOut(int id)
         {
-            string query = "UPDATE dbo.Bill SET status = 1 WHERE id = " + id;
+            string query = "UPDATE HoaDon SET status = 1 WHERE MaHD = " + id;
             DataProvider.Instance.ExecuteNonQuery(query);
         }
 

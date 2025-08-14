@@ -9,49 +9,27 @@ namespace HappyCoffeeApp.DTO
 {
     public class Menu
     {
-        public Menu(string foodName, int count, float price, float totalPrice = 0)
+        public Menu(string drinkName, int count, float price, float totalPrice = 0)
         {
-            this.FoodName = foodName;
+            this.DrinkName = drinkName;
             this.Count = count;
             this.Price = price;
-            this.TotalPrice = totalPrice; 
+            this.TotalPrice = totalPrice;
         }
 
         public Menu(DataRow row)
         {
-            this.FoodName = row["Name"].ToString();
-            this.Count = (int)row["count"];
-            this.Price = (float)Convert.ToDouble(row["price"].ToString());
-            this.TotalPrice = (float)Convert.ToDouble(row["totalPrice"].ToString());
+            this.DrinkName = row["FoodName"].ToString(); // Đổi từ "Name" sang "FoodName"
+            this.Count = Convert.ToInt32(row["Count"]);
+            this.Price = Convert.ToSingle(row["Price"]);
+            this.TotalPrice = Convert.ToSingle(row["TotalPrice"]);
         }
 
-        private float totalPrice;
-        public float TotalPrice
-        {
-            get { return totalPrice; }
-            set { totalPrice = value; }
-        }
+        public string DrinkName { get; set; }
+        public int Count { get; set; }
+        public float Price { get; set; }
+        public float TotalPrice { get; set; }
 
-        private float price;
-        public float Price 
-        {
-            get { return price; }
-            set { price = value; }
-        }
 
-        private int count;
-        public int Count 
-        { 
-            get { return count; } 
-            set { count = value; }
-        }
-        private string foodName;
-        public string FoodName
-        {
-            get { return foodName; }
-            set { foodName = value; }
-        }
-
-       
     }
 }

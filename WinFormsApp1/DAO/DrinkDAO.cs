@@ -22,7 +22,7 @@ namespace HappyCoffeeApp.DAO
         {
             List<Drink> list = new List<Drink> ();
 
-            string query = "SELECT * FROM SanPham where idCategory = " + id;
+            string query = "SELECT * FROM SanPham where MaSP = " + id;
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {

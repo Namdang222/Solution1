@@ -22,7 +22,7 @@ namespace HappyCoffeeApp
             InitializeComponent();
             LoadTable();
             LoadCategory();
-        }      
+        }
 
         void LoadCategory()
         {
@@ -30,10 +30,10 @@ namespace HappyCoffeeApp
             cmb_Category.DataSource = listCategory;
             cmb_Category.DisplayMember = "Name";
         }
-        void LoadDrinkListByCategoryID(int id)
+        void LoadDrinkListByCategoryID(int MaSP)
         {
-            List<Drink> listFood = DrinkDAO.Instance.GetFoodByCategoryID(id);
-            cbFood.DataSource = listFood;
+            List<Drink> listDrinks = DrinkDAO.Instance.GetFoodByCategoryID(MaSP);
+            cbFood.DataSource = listDrinks;
             cbFood.DisplayMember = "Name";
         }
         void LoadTable()
@@ -58,7 +58,7 @@ namespace HappyCoffeeApp
                 }
                 fLP_Table.Controls.Add(btn);
             }
-            
+
         }
         void ShowBill(int id)
         {
@@ -67,7 +67,7 @@ namespace HappyCoffeeApp
             float totalPrice = 0;
             foreach (Menu item in listBillInfo)
             {
-                ListViewItem lsvItem = new ListViewItem(item.FoodName.ToString());
+                ListViewItem lsvItem = new ListViewItem(item.DrinkName.ToString());
                 lsvItem.SubItems.Add(item.Count.ToString());
                 lsvItem.SubItems.Add(item.Price.ToString());
                 lsvItem.SubItems.Add(item.TotalPrice.ToString());
@@ -133,24 +133,52 @@ namespace HappyCoffeeApp
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
+            // Kiểm tra bàn đã chọn
+            if (lsv_Bill.Tag == null)
+            {
+                MessageBox.Show("Vui lòng chọn bàn trước khi thêm món.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Table table = lsv_Bill.Tag as Table;
 
-            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.MaBan);
-            int foodID = (cbFood.SelectedItem as Drink).ID;
+            // Kiểm tra món đã chọn
+            if (cbFood.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn món trước khi thêm vào hóa đơn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Drink selectedDrink = cbFood.SelectedItem as Drink;
+            int drinkID = selectedDrink.MaSP;
             int count = (int)num_Count.Value;
+
+            if (count <= 0)
+            {
+                MessageBox.Show("Số lượng phải lớn hơn 0.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra hóa đơn hiện tại của bàn
+            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.MaBan);
 
             if (idBill == -1)
             {
+                // Nếu chưa có hóa đơn → tạo mới
                 BillDAO.Instance.InsertBill(table.MaBan);
-                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIDBill(), foodID, count);
+                int newBillID = BillDAO.Instance.GetMaxIDBill();
+                BillInfoDAO.Instance.InsertBillInfo(newBillID, drinkID, count);
             }
             else
             {
-                BillInfoDAO.Instance.InsertBillInfo(idBill, foodID, count);
+                // Nếu đã có hóa đơn → thêm món vào hóa đơn đó
+                BillInfoDAO.Instance.InsertBillInfo(idBill, drinkID, count);
             }
-            ShowBill(table.MaBan);
 
+            // Hiển thị lại hóa đơn và cập nhật trạng thái bàn
+            ShowBill(table.MaBan);
             LoadTable();
+
 
         }
         private void btn_Check_Click(object sender, EventArgs e)
@@ -169,5 +197,10 @@ namespace HappyCoffeeApp
             }
         }
 
+        private void cbFood_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+
+        }
     }
 }

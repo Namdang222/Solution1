@@ -9,48 +9,49 @@ namespace HappyCoffeeApp.DTO
 {
     public class Drink
     {
-        public Drink(int id, string name, int categoryID, float price)
+        public Drink(int maSP, string tenSP, int maLoaiSanPham, float donGia)
         {
-            this.ID = id;
-            this.Name = name;
-            this.CategoryID = categoryID;
-            this.Price = price;
+            this.MaSP = maSP;
+            this.TenSP = tenSP;
+            this.MaLoaiSanPham = maLoaiSanPham;
+            this.DonGia = donGia;
         }
 
         public Drink(DataRow row)
         {
-            this.ID = (int)row["id"];
-            this.Name = row["name"].ToString();
-            this.CategoryID = (int)row["idcategory"];
-            this.Price = (float)Convert.ToDouble(row["price"].ToString());
+            this.MaSP = (int)row["MaSP"];
+            this.TenSP = row["TenSP"].ToString();
+            this.MaLoaiSanPham = (int)row["MaLoaiSanPham"];
+            this.DonGia = Convert.ToSingle(row["DonGia"]);
         }
 
-        private float price;
-        public float Price
+        private int maSP;
+        public int MaSP
         {
-            get { return price; }
-            set { price = value; }
+            get { return maSP; }
+            set { maSP = value; }
         }
 
-        private int categoryID;
-        public int CategoryID
+        private string tenSP;
+        public string TenSP
         {
-            get { return categoryID; }
-            set {categoryID = value; }
+            get { return tenSP; }
+            set { tenSP = value; }
         }
 
-        private string name;
-        public string Name
+        private int maLoaiSanPham;
+        public int MaLoaiSanPham
         {
-            get { return name; }
-            set { name = value; }
+            get { return maLoaiSanPham; }
+            set { maLoaiSanPham = value; }
         }
 
-        private int iD;
-        public int ID
+        private float donGia;
+        public float DonGia
         {
-            get { return iD; }
-            set { iD = value; }
+            get { return donGia; }
+            set { donGia = value; }
         }
+
     }
 }

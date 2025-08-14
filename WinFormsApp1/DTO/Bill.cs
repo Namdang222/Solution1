@@ -9,52 +9,35 @@ namespace HappyCoffeeApp.DTO
 {
     public class Bill
     {
-        public Bill(int id, DateTime? dateCheckin, DateTime? dateCheckOut, int status)
+        public Bill(int maHD, DateTime ngayLap, int maKH, int maNV, int maBan, int maKhuyenMai, float tongTien)
         {
-            this.ID = id;
-            this.DateCheckIn = dateCheckin;
-            this.DateCheckOut = dateCheckOut;
-            this.Status = status;
+            this.MaHD = maHD;
+            this.NgayLap = ngayLap;
+            this.MaKH = maKH;
+            this.MaNV = maNV;
+            this.MaBan = maBan;
+            this.MaKhuyenMai = maKhuyenMai;
+            this.TongTien = tongTien;
         }
+
         public Bill(DataRow row)
         {
-            this.ID = (int)row["id"];
-            this.DateCheckIn = (DateTime?)row["dateCheckin"];
-
-            var dateCheckOutTemp = row["dateCheckOut"];
-            if (dateCheckOutTemp.ToString() != "") 
-            this.DateCheckOut = (DateTime?)dateCheckOutTemp;
-
-            this.Status = (int)row["status"];
+            this.MaHD = (int)row["MaHD"];
+            this.NgayLap = Convert.ToDateTime(row["NgayLap"]);
+            this.MaKH = (int)row["MaKH"];
+            this.MaNV = (int)row["MaNV"];
+            this.MaBan = (int)row["MaBan"];
+            this.MaKhuyenMai = (int)row["MaKhuyenMai"];
+            this.TongTien = Convert.ToSingle(row["TongTien"]);
         }
 
-        private int status;
-        public int Status
-        {
-            get { return status; }
-            set { status = value; }
-        }
-
-        private DateTime? dateCheckOut;
-        public DateTime? DateCheckOut
-        {
-            get { return dateCheckOut; }
-            set { dateCheckOut = value; }
-        }
-
-        private DateTime? dateCheckIn;
-        public DateTime? DateCheckIn
-        {
-            get { return dateCheckIn; }
-            set { dateCheckIn = value; }
-        }
-
-        private int iD;
-
-        public int ID 
-        { 
-            get { return iD; } 
-            set {  iD = value; } 
-        }
+        public int MaHD { get; set; }
+        public DateTime NgayLap { get; set; }
+        public int MaKH { get; set; }
+        public int MaNV { get; set; }
+        public int MaBan { get; set; }
+        public int MaKhuyenMai { get; set; }
+        public float TongTien { get; set; }
     }
+
 }
