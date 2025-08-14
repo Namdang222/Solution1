@@ -68,20 +68,20 @@
             panel2.Controls.Add(numericUpDown1);
             panel2.Controls.Add(btn_Discount);
             panel2.Controls.Add(btn_Check);
-            panel2.Location = new Point(414, 296);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(473, 395);
             panel2.Name = "panel2";
-            panel2.Size = new Size(394, 79);
+            panel2.Size = new Size(450, 105);
             panel2.TabIndex = 1;
             // 
             // txbTotalPrice
             // 
             txbTotalPrice.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 163);
             txbTotalPrice.ForeColor = Color.OrangeRed;
-            txbTotalPrice.Location = new Point(174, 30);
+            txbTotalPrice.Location = new Point(199, 40);
+            txbTotalPrice.Margin = new Padding(3, 4, 3, 4);
             txbTotalPrice.Name = "txbTotalPrice";
             txbTotalPrice.ReadOnly = true;
-            txbTotalPrice.Size = new Size(128, 25);
+            txbTotalPrice.Size = new Size(146, 29);
             txbTotalPrice.TabIndex = 5;
             txbTotalPrice.Text = "0";
             txbTotalPrice.TextAlign = HorizontalAlignment.Right;
@@ -89,47 +89,43 @@
             // cmb_Switch
             // 
             cmb_Switch.FormattingEnabled = true;
-            cmb_Switch.Location = new Point(5, 50);
-            cmb_Switch.Margin = new Padding(3, 2, 3, 2);
+            cmb_Switch.Location = new Point(6, 67);
             cmb_Switch.Name = "cmb_Switch";
-            cmb_Switch.Size = new Size(83, 23);
+            cmb_Switch.Size = new Size(94, 28);
             cmb_Switch.TabIndex = 3;
             // 
             // btn_SwitchTable
             // 
-            btn_SwitchTable.Location = new Point(6, 14);
-            btn_SwitchTable.Margin = new Padding(3, 2, 3, 2);
+            btn_SwitchTable.Location = new Point(7, 19);
             btn_SwitchTable.Name = "btn_SwitchTable";
-            btn_SwitchTable.Size = new Size(82, 32);
+            btn_SwitchTable.Size = new Size(94, 43);
             btn_SwitchTable.TabIndex = 4;
             btn_SwitchTable.Text = "Chuyển bàn";
             btn_SwitchTable.UseVisualStyleBackColor = true;
+            btn_SwitchTable.Click += btn_SwitchTable_Click;
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(93, 50);
-            numericUpDown1.Margin = new Padding(3, 2, 3, 2);
+            numericUpDown1.Location = new Point(106, 67);
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(82, 23);
+            numericUpDown1.Size = new Size(94, 27);
             numericUpDown1.TabIndex = 3;
             numericUpDown1.TextAlign = HorizontalAlignment.Center;
             // 
             // btn_Discount
             // 
-            btn_Discount.Location = new Point(92, 14);
-            btn_Discount.Margin = new Padding(3, 2, 3, 2);
+            btn_Discount.Location = new Point(105, 19);
             btn_Discount.Name = "btn_Discount";
-            btn_Discount.Size = new Size(82, 32);
+            btn_Discount.Size = new Size(94, 43);
             btn_Discount.TabIndex = 3;
             btn_Discount.Text = "Giảm giá";
             btn_Discount.UseVisualStyleBackColor = true;
             // 
             // btn_Check
             // 
-            btn_Check.Location = new Point(308, 21);
-            btn_Check.Margin = new Padding(3, 2, 3, 2);
+            btn_Check.Location = new Point(352, 28);
             btn_Check.Name = "btn_Check";
-            btn_Check.Size = new Size(82, 42);
+            btn_Check.Size = new Size(94, 56);
             btn_Check.TabIndex = 2;
             btn_Check.Text = "Thanh toán";
             btn_Check.UseVisualStyleBackColor = true;
@@ -141,15 +137,15 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { adminToolStripMenuItem, thôngTinToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(5, 2, 0, 2);
-            menuStrip1.Size = new Size(820, 24);
+            menuStrip1.Padding = new Padding(6, 3, 0, 3);
+            menuStrip1.Size = new Size(1010, 30);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
             // adminToolStripMenuItem
             // 
             adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            adminToolStripMenuItem.Size = new Size(55, 20);
+            adminToolStripMenuItem.Size = new Size(67, 24);
             adminToolStripMenuItem.Text = "Admin";
             adminToolStripMenuItem.Click += adminToolStripMenuItem_Click;
             // 
@@ -157,13 +153,12 @@
             // 
             thôngTinToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { thôngTinCáNhânToolStripMenuItem, đăngXuấtToolStripMenuItem });
             thôngTinToolStripMenuItem.Name = "thôngTinToolStripMenuItem";
-            thôngTinToolStripMenuItem.Size = new Size(70, 20);
+            thôngTinToolStripMenuItem.Size = new Size(86, 24);
             thôngTinToolStripMenuItem.Text = "Thông tin";
             // 
             // thôngTinCáNhânToolStripMenuItem
             // 
             thôngTinCáNhânToolStripMenuItem.Name = "thôngTinCáNhânToolStripMenuItem";
-            thôngTinCáNhânToolStripMenuItem.Size = new Size(170, 22);
             thôngTinCáNhânToolStripMenuItem.Size = new Size(210, 26);
             thôngTinCáNhânToolStripMenuItem.Text = "Thông tin cá nhân";
             thôngTinCáNhânToolStripMenuItem.Click += thôngTinCáNhânToolStripMenuItem_Click;
@@ -171,7 +166,6 @@
             // đăngXuấtToolStripMenuItem
             // 
             đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            đăngXuấtToolStripMenuItem.Size = new Size(170, 22);
             đăngXuấtToolStripMenuItem.Size = new Size(210, 26);
             đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             đăngXuấtToolStripMenuItem.Click += đăngXuấtToolStripMenuItem_Click;
@@ -179,10 +173,9 @@
             // panel3
             // 
             panel3.Controls.Add(lsv_Bill);
-            panel3.Location = new Point(414, 89);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(473, 119);
             panel3.Name = "panel3";
-            panel3.Size = new Size(394, 202);
+            panel3.Size = new Size(450, 269);
             panel3.TabIndex = 3;
             // 
             // lsv_Bill
@@ -190,9 +183,8 @@
             lsv_Bill.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
             lsv_Bill.GridLines = true;
             lsv_Bill.Location = new Point(3, 0);
-            lsv_Bill.Margin = new Padding(3, 2, 3, 2);
             lsv_Bill.Name = "lsv_Bill";
-            lsv_Bill.Size = new Size(391, 198);
+            lsv_Bill.Size = new Size(446, 263);
             lsv_Bill.TabIndex = 0;
             lsv_Bill.UseCompatibleStateImageBehavior = false;
             lsv_Bill.View = View.Details;
@@ -222,36 +214,34 @@
             panel4.Controls.Add(num_Count);
             panel4.Controls.Add(btn_Add);
             panel4.Controls.Add(cmb_Category);
-            panel4.Location = new Point(416, 23);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(475, 31);
             panel4.Name = "panel4";
-            panel4.Size = new Size(392, 62);
+            panel4.Size = new Size(448, 83);
             panel4.TabIndex = 4;
             // 
             // cbFood
             // 
             cbFood.FormattingEnabled = true;
-            cbFood.Location = new Point(1, 36);
+            cbFood.Location = new Point(1, 48);
+            cbFood.Margin = new Padding(3, 4, 3, 4);
             cbFood.Name = "cbFood";
-            cbFood.Size = new Size(135, 23);
+            cbFood.Size = new Size(154, 28);
             cbFood.TabIndex = 3;
             // 
             // num_Count
             // 
-            num_Count.Location = new Point(306, 3);
-            num_Count.Margin = new Padding(3, 2, 3, 2);
+            num_Count.Location = new Point(350, 4);
             num_Count.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
             num_Count.Name = "num_Count";
-            num_Count.Size = new Size(51, 23);
+            num_Count.Size = new Size(58, 27);
             num_Count.TabIndex = 2;
             num_Count.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btn_Add
             // 
-            btn_Add.Location = new Point(196, 2);
-            btn_Add.Margin = new Padding(3, 2, 3, 2);
+            btn_Add.Location = new Point(224, 3);
             btn_Add.Name = "btn_Add";
-            btn_Add.Size = new Size(82, 57);
+            btn_Add.Size = new Size(94, 76);
             btn_Add.TabIndex = 1;
             btn_Add.Text = "Thêm món";
             btn_Add.UseVisualStyleBackColor = true;
@@ -260,38 +250,34 @@
             // cmb_Category
             // 
             cmb_Category.FormattingEnabled = true;
-            cmb_Category.Location = new Point(3, 3);
-            cmb_Category.Margin = new Padding(3, 2, 3, 2);
+            cmb_Category.Location = new Point(3, 4);
             cmb_Category.Name = "cmb_Category";
-            cmb_Category.Size = new Size(133, 23);
+            cmb_Category.Size = new Size(151, 28);
             cmb_Category.TabIndex = 0;
             cmb_Category.SelectedIndexChanged += cmb_Category_SelectedIndexChanged;
             // 
             // fLP_Table
             // 
-            fLP_Table.Location = new Point(10, 26);
-            fLP_Table.Margin = new Padding(3, 2, 3, 2);
+            fLP_Table.Location = new Point(11, 35);
             fLP_Table.Name = "fLP_Table";
-            fLP_Table.Size = new Size(398, 350);
+            fLP_Table.Size = new Size(455, 467);
             fLP_Table.TabIndex = 5;
             // 
             // TableManager
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(820, 385);
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(884, 512);
+            ClientSize = new Size(1010, 683);
             Controls.Add(fLP_Table);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "TableManager";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.Manual;
             Text = "TableManager";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

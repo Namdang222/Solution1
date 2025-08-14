@@ -1,54 +1,43 @@
-﻿using HappyCoffeeApp.DTO;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HappyCoffeeApp.DAO
 {
     public class BillDAO
     {
         private static BillDAO instance;
-
-        public static BillDAO Instance 
-        { 
-            get { if (instance == null) instance = new BillDAO(); return BillDAO.instance; }
-            private set { BillDAO.instance = value; }
-        }
+        public static BillDAO Instance => instance ??= new BillDAO();
         private BillDAO() { }
-        public int GetUncheckBillIDByTableID(int id)
-        {
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM dbo.Bill WHERE idTable = " + id +" AND status = 0");
 
-            if (data.Rows.Count > 0)
-            {
-                Bill bill = new Bill(data.Rows[0]);
-                return bill.ID;
-            }
-            return -1;
-        }
-        public void CheckOut(int id)
+        // Lấy bill chưa thanh toán hoặc tạo mới nếu chưa có
+        public int GetOrCreateOpenBillByTable(int maBan)
         {
-            string query = "UPDATE dbo.Bill SET status = 1 WHERE id = " + id;
-            DataProvider.Instance.ExecuteNonQuery(query);
+            object id = DataProvider.Instance.ExecuteScalar(
+                "SELECT MaHD FROM HoaDon WHERE MaBan=@p0 AND TrangThai=N'Chưa thanh toán'",
+                new object[] { maBan });
+
+            // Kiểm tra DBNull trước khi convert
+            if (id != null && id != DBNull.Value)
+                return Convert.ToInt32(id);
+
+            // Nếu chưa có hóa đơn, tạo mới
+            DataProvider.Instance.ExecuteNonQuery(
+                "INSERT INTO HoaDon(NgayLap, MaBan, TrangThai, TongTien) VALUES (GETDATE(), @p0, N'Chưa thanh toán', 0)",
+                new object[] { maBan });
+
+            // Lấy ID vừa insert bằng SCOPE_IDENTITY()
+            object newId = DataProvider.Instance.ExecuteScalar("SELECT SCOPE_IDENTITY()");
+            return Convert.ToInt32(newId);
         }
 
-        public void InsertBill(int id)
+
+
+        // Thanh toán bill
+        public void Checkout(int maHD, decimal totalPrice)
         {
-            DataProvider.Instance.ExecuteQuery("exec USP_InsertBill @idTable", new object[]{id});
-        }
-        public int GetMaxIDBill()
-        {
-            try
-            {
-                return (int)DataProvider.Instance.ExecuteScalar("SELECT MAX(id) FROM dbo.Bill");
-            }
-            catch
-            {
-                return 1;
-            }
+            DataProvider.Instance.ExecuteNonQuery(
+                "UPDATE HoaDon SET TrangThai=N'Đã thanh toán', TongTien=@p0 WHERE MaHD=@p1",
+                new object[] { totalPrice, maHD });
         }
     }
 }

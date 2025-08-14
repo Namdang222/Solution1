@@ -22,6 +22,7 @@ namespace HappyCoffeeApp
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            loadacclist();
         }
 
         private void Admin_Load(object sender, EventArgs e)
@@ -33,6 +34,12 @@ namespace HappyCoffeeApp
         private void dGv_Total_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        void loadacclist()
+        {
+            string sqlconn = "Data Source=MSI\\SQLEXPRESS;Initial Catalog=PRO131;Integrated Security=True;Trust Server Certificate=True";
+            SqlConnection conn = new SqlConnection(sqlconn);
+            string query = "select * from ";
         }
     }
 }

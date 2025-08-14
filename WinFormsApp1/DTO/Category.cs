@@ -9,28 +9,19 @@ namespace HappyCoffeeApp.DTO
 {
     public class Category
     {
-        public Category(int id ,string name) 
+        public Category(int id, string name)
         {
-            this.ID = id;
-            this.Name = name;
-        }
-        public Category(DataRow row) 
-        {
-            this.ID = (int)row["id"];
-            this.Name = row["name"].ToString();
+            ID = id;
+            Name = name;
         }
 
-        private string name;
-        public string Name
+        public Category(DataRow row)
         {
-            get { return name; }
-            set { name = value; }
+            ID = (int)row["MaLoaiSP"];
+            Name = row["TenLoai"].ToString();
         }
-        private int iD;
-        public int ID
-        {
-            get { return iD; }
-            set { iD = value; }
-        }
+
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }

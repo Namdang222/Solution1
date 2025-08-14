@@ -748,10 +748,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(908, 505);
             Controls.Add(tbc_Admin);
+            MaximizeBox = false;
             Name = "Admin";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.Manual;
             Text = "Admin";
             Load += Admin_Load;
             tbc_Admin.ResumeLayout(false);

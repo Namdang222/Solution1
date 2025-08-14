@@ -10,52 +10,20 @@ namespace HappyCoffeeApp.DTO
     {
         public Table(int id, string name, string status)
         {
-            this.ID = id;
-            this.Name = name;
-            this.Status = status;
+            ID = id;
+            Name = name;
+            Status = status;
         }
+
         public Table(DataRow row)
         {
-            this.ID = (int)row["id"];
-            this.Name = row["name"].ToString();
-            this.Status = row["status"].ToString();
+            ID = (int)row["MaBan"];
+            Name = row["ViTri"].ToString();
+            Status = row["TrangThai"].ToString();
         }
 
-            this.Id = id;
-            this.Name = name;
-            this.Status = status;
-        }
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-        private string status;
-        public string Status
-        {
-            get { return status; }
-            set { status = value; }
-        }
-
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-        private int iD;
-        public int ID
-        {
-            get { return iD; }
-            set { iD = value; }
-        }
-    }
-        private int id;
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Status { get; set; }
     }
 }

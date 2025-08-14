@@ -9,46 +9,28 @@ namespace HappyCoffeeApp.DTO
 {
     public class BillInfo
     {
-        public BillInfo(int id, int billID, int foodID, int count)
+        public BillInfo(int id, int maHD, int maSP, int soLuong, decimal donGia)
         {
-            this.ID = id;
-            this.BillID = billID;
-            this.FoodID = foodID;
-            this.Count = count;
-        }
-        public BillInfo(DataRow row) 
-        {
-            this.ID = (int)row["id"];
-            this.BillID = (int)row["idbill"];
-            this.FoodID = (int)row["idfood"];
-            this.Count = (int)row["count"];
-        }
-        private int count;
-        public int Count
-        { 
-            get { return count; }
-            set { count = value; }
+            ID = id;
+            MaHD = maHD;
+            MaSP = maSP;
+            SoLuong = soLuong;
+            DonGia = donGia;
         }
 
-        private int foodID;
-        public int FoodID
+        public BillInfo(DataRow row)
         {
-            get { return foodID; }
-            set { foodID = value; }
+            ID = (int)row["MaCTHD"];
+            MaHD = (int)row["MaHD"];
+            MaSP = (int)row["MaSP"];
+            SoLuong = (int)row["SoLuong"];
+            DonGia = (decimal)row["DonGia"];
         }
 
-        private int billID;
-        public int BillID
-        {
-            get { return billID; }
-            set { billID = value; }
-        }
-
-        private int iD;
-        public int ID
-        {
-            get { return iD; }
-            set { iD = value; }
-        }
+        public int ID { get; set; }
+        public int MaHD { get; set; }
+        public int MaSP { get; set; }
+        public int SoLuong { get; set; }
+        public decimal DonGia { get; set; }
     }
 }
