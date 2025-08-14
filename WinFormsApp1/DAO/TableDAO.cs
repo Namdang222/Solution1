@@ -19,11 +19,7 @@ namespace HappyCoffeeApp.DAO
         }
         public static int TableWidth = 90;
         public static int TableHeight = 90;
-            get { if (instance == null) instance = new TableDAO(); 
-                return TableDAO.instance; 
-                }
-            private set { TableDAO.instance = value; }
-        }
+
         private TableDAO() { }
         public List<Table> LoadTableList()
         {
@@ -35,7 +31,6 @@ namespace HappyCoffeeApp.DAO
                 Table table = new Table(item);
                 tableList.Add(table);
             }
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM TableFood");
             return tableList;
         }
     }

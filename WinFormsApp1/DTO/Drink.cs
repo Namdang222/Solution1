@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HappyCoffeeApp.DTO
 {
-    public class Food
+    public class Drink
     {
-        public Food(int id, string name, int categoryID, float price)
+        public Drink(int id, string name, int categoryID, float price)
         {
             this.ID = id;
             this.Name = name;
@@ -17,7 +17,7 @@ namespace HappyCoffeeApp.DTO
             this.Price = price;
         }
 
-        public Food(DataRow row)
+        public Drink(DataRow row)
         {
             this.ID = (int)row["id"];
             this.Name = row["name"].ToString();

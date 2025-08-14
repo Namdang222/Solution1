@@ -20,17 +20,7 @@ namespace HappyCoffeeApp.DTO
             this.Name = row["name"].ToString();
             this.Status = row["status"].ToString();
         }
-
-            this.Id = id;
-            this.Name = name;
-            this.Status = status;
-        }
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        
         private string status;
         public string Status
         {
@@ -49,13 +39,6 @@ namespace HappyCoffeeApp.DTO
         {
             get { return iD; }
             set { iD = value; }
-        }
-    }
-        private int id;
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
         }
     }
 }

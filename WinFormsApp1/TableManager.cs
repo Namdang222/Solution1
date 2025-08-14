@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.ListViewItem;
 
-namespace HappyCoffeeApp  
+namespace HappyCoffeeApp
 {
     public partial class TableManager : Form
     {
@@ -22,8 +22,7 @@ namespace HappyCoffeeApp
             InitializeComponent();
             LoadTable();
             LoadCategory();
-        }
-        #region Method
+        }      
 
         void LoadCategory()
         {
@@ -31,9 +30,9 @@ namespace HappyCoffeeApp
             cmb_Category.DataSource = listCategory;
             cmb_Category.DisplayMember = "Name";
         }
-        void LoadFoodListByCategoryID(int id)
+        void LoadDrinkListByCategoryID(int id)
         {
-            List<Food> listFood = FoodDAO.Instance.GetFoodByCategoryID(id);
+            List<Drink> listFood = DrinkDAO.Instance.GetFoodByCategoryID(id);
             cbFood.DataSource = listFood;
             cbFood.DisplayMember = "Name";
         }
@@ -57,9 +56,10 @@ namespace HappyCoffeeApp
                         btn.BackColor = Color.LightPink;
                         break;
                 }
-
                 fLP_Table.Controls.Add(btn);
+                MessageBox.Show("Số bàn: " + fLP_Table.Controls.Count);
             }
+            
         }
         void ShowBill(int id)
         {
@@ -82,10 +82,6 @@ namespace HappyCoffeeApp
             txbTotalPrice.Text = totalPrice.ToString("c", culture);
         }
 
-
-        #endregion
-
-        #region Events
         void btn_Click(object sender, EventArgs e)
         {
             int tableID = ((sender as Button).Tag as Table).ID;
@@ -133,7 +129,7 @@ namespace HappyCoffeeApp
             Category selected = cb.SelectedItem as Category;
             id = selected.ID;
 
-            LoadFoodListByCategoryID(id);
+            LoadDrinkListByCategoryID(id);
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
@@ -141,7 +137,7 @@ namespace HappyCoffeeApp
             Table table = lsv_Bill.Tag as Table;
 
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
-            int foodID = (cbFood.SelectedItem as Food).ID;
+            int foodID = (cbFood.SelectedItem as Drink).ID;
             int count = (int)num_Count.Value;
 
             if (idBill == -1)
@@ -163,7 +159,7 @@ namespace HappyCoffeeApp
             Table table = lsv_Bill.Tag as Table;
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
 
-            if (idBill != -1) 
+            if (idBill != -1)
             {
                 if (MessageBox.Show("Bạn có chắc thanh toán hóa đơn cho bàn " + table.Name, "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
@@ -171,17 +167,8 @@ namespace HappyCoffeeApp
                     ShowBill(table.ID);
                     LoadTable();
                 }
-            } 
+            }
         }
 
-        #endregion
-        void LoadTable()
-        {
-            // This method should load the tables from the database and display them in the UI.
-            // For example, you might use a DataGridView to show the tables.
-            // Here is a placeholder for the actual implementation.
-            MessageBox.Show("LoadTable method is not implemented yet.");
-
-        }
     }
 }
