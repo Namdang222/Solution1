@@ -13,22 +13,29 @@ namespace HappyCoffeeApp.DAO
         private static TableDAO instance;
         public static TableDAO Instance
         {
+
             get { if (instance == null) instance = new TableDAO(); return TableDAO.instance; }
             private set { TableDAO.instance = value; }
         }
         public static int TableWidth = 90;
         public static int TableHeight = 90;
+            get { if (instance == null) instance = new TableDAO(); 
+                return TableDAO.instance; 
+                }
+            private set { TableDAO.instance = value; }
+        }
         private TableDAO() { }
         public List<Table> LoadTableList()
         {
             List<Table> tableList = new List<Table>();
+
             DataTable data = DataProvider.Instance.ExecuteQuery("USP_GetTableList");
             foreach (DataRow item in data.Rows)
             {
                 Table table = new Table(item);
                 tableList.Add(table);
             }
-
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM TableFood");
             return tableList;
         }
     }

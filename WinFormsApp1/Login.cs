@@ -20,7 +20,8 @@ namespace HappyCoffeeApp
         }
         private void Login_Load(object sender, EventArgs e)
         {
-            pic_logo.Image = Image.FromFile("D:\\FPT Polytechnic\\FPT Polytechnic\\PRO131\\Happy Coffee.png");
+            string imagePath = Path.Combine(Application.StartupPath, "Images", "HappyCoffee.png");
+            pic_logo.Image = Image.FromFile(imagePath);
             pic_logo.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
@@ -33,7 +34,7 @@ namespace HappyCoffeeApp
             }
             string username = txt_Namelogin.Text.Trim();
             string password = txt_Passlogin.Text.Trim();
-            if (login(username,password))
+            if (login(username, password))
             {
                 TableManager tableManager = new TableManager();
                 this.Hide();
@@ -47,7 +48,7 @@ namespace HappyCoffeeApp
         }
         bool login(string username, string password)
         {
-            string query = "SELECT COUNT(*) FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
+            string query = "SELECT 1 FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { username, password });
             return Convert.ToInt32(result) > 0;
 
@@ -62,16 +63,9 @@ namespace HappyCoffeeApp
             Application.Exit();
         }
 
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        private void Login_Load_1(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc chắn muốn thoát không?", "Thông báo", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
-            {
-                e.Cancel = true;
-            }
-            else
-            {
-                Application.Exit();
-            }
+
         }
     }
 }

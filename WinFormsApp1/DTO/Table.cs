@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace HappyCoffeeApp.DTO
 {
     public class Table
@@ -22,12 +21,23 @@ namespace HappyCoffeeApp.DTO
             this.Status = row["status"].ToString();
         }
 
+            this.Id = id;
+            this.Name = name;
+            this.Status = status;
+        }
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
         private string status;
         public string Status
         {
             get { return status; }
             set { status = value; }
         }
+
         private string name;
         public string Name
         {
@@ -41,5 +51,11 @@ namespace HappyCoffeeApp.DTO
             set { iD = value; }
         }
     }
-
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+    }
 }
