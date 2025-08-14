@@ -9,46 +9,58 @@ namespace HappyCoffeeApp.DTO
 {
     public class BillInfo
     {
-        public BillInfo(int id, int billID, int foodID, int count)
+        public BillInfo(int maCTHD, int soLuong, decimal donGia, int maHD, int maSP)
         {
-            this.ID = id;
-            this.BillID = billID;
-            this.FoodID = foodID;
-            this.Count = count;
-        }
-        public BillInfo(DataRow row) 
-        {
-            this.ID = (int)row["id"];
-            this.BillID = (int)row["idbill"];
-            this.FoodID = (int)row["idfood"];
-            this.Count = (int)row["count"];
-        }
-        private int count;
-        public int Count
-        { 
-            get { return count; }
-            set { count = value; }
+            this.MaCTHD = maCTHD;
+            this.SoLuong = soLuong;
+            this.DonGia = donGia;
+            this.MaHD = maHD;
+            this.MaSP = maSP;
         }
 
-        private int foodID;
-        public int FoodID
+        public BillInfo(DataRow row)
         {
-            get { return foodID; }
-            set { foodID = value; }
+            this.MaCTHD = (int)row["MaCTHD"];
+            this.SoLuong = (int)row["SoLuong"];
+            this.DonGia = Convert.ToDecimal(row["DonGia"]);
+            this.MaHD = (int)row["MaHD"];
+            this.MaSP = (int)row["MaSP"];
         }
 
-        private int billID;
-        public int BillID
+        private int maCTHD;
+        public int MaCTHD
         {
-            get { return billID; }
-            set { billID = value; }
+            get { return maCTHD; }
+            set { maCTHD = value; }
         }
 
-        private int iD;
-        public int ID
+        private int soLuong;
+        public int SoLuong
         {
-            get { return iD; }
-            set { iD = value; }
+            get { return soLuong; }
+            set { soLuong = value; }
         }
+
+        private decimal donGia;
+        public decimal DonGia
+        {
+            get { return donGia; }
+            set { donGia = value; }
+        }
+
+        private int maHD;
+        public int MaHD
+        {
+            get { return maHD; }
+            set { maHD = value; }
+        }
+
+        private int maSP;
+        public int MaSP
+        {
+            get { return maSP; }
+            set { maSP = value; }
+        }
+
     }
 }

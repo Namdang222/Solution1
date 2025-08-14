@@ -43,11 +43,11 @@ namespace HappyCoffeeApp
             foreach (Table item in tableList)
             {
                 Button btn = new Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
-                btn.Text = item.Name + Environment.NewLine + item.Status;
+                btn.Text = item.ViTri + Environment.NewLine + item.TrangThai;
                 btn.Click += btn_Click;
                 btn.Tag = item;
 
-                switch (item.Status)
+                switch (item.TrangThai)
                 {
                     case "Trống":
                         btn.BackColor = Color.Aqua;
@@ -57,7 +57,6 @@ namespace HappyCoffeeApp
                         break;
                 }
                 fLP_Table.Controls.Add(btn);
-                MessageBox.Show("Số bàn: " + fLP_Table.Controls.Count);
             }
             
         }
@@ -84,7 +83,7 @@ namespace HappyCoffeeApp
 
         void btn_Click(object sender, EventArgs e)
         {
-            int tableID = ((sender as Button).Tag as Table).ID;
+            int tableID = ((sender as Button).Tag as Table).MaBan;
             lsv_Bill.Tag = (sender as Button).Tag;
             ShowBill(tableID);
         }
@@ -127,7 +126,7 @@ namespace HappyCoffeeApp
                 return;
 
             Category selected = cb.SelectedItem as Category;
-            id = selected.ID;
+            id = selected.MaSP;
 
             LoadDrinkListByCategoryID(id);
         }
@@ -136,20 +135,20 @@ namespace HappyCoffeeApp
         {
             Table table = lsv_Bill.Tag as Table;
 
-            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.MaBan);
             int foodID = (cbFood.SelectedItem as Drink).ID;
             int count = (int)num_Count.Value;
 
             if (idBill == -1)
             {
-                BillDAO.Instance.InsertBill(table.ID);
+                BillDAO.Instance.InsertBill(table.MaBan);
                 BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIDBill(), foodID, count);
             }
             else
             {
                 BillInfoDAO.Instance.InsertBillInfo(idBill, foodID, count);
             }
-            ShowBill(table.ID);
+            ShowBill(table.MaBan);
 
             LoadTable();
 
@@ -157,14 +156,14 @@ namespace HappyCoffeeApp
         private void btn_Check_Click(object sender, EventArgs e)
         {
             Table table = lsv_Bill.Tag as Table;
-            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.MaBan);
 
             if (idBill != -1)
             {
-                if (MessageBox.Show("Bạn có chắc thanh toán hóa đơn cho bàn " + table.Name, "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                if (MessageBox.Show("Bạn có chắc thanh toán hóa đơn cho bàn " + table.ViTri, "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
                     BillDAO.Instance.CheckOut(idBill);
-                    ShowBill(table.ID);
+                    ShowBill(table.MaBan);
                     LoadTable();
                 }
             }
