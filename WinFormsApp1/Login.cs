@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using HappyCoffeeApp.DTO;
 
 namespace HappyCoffeeApp
 {
@@ -36,7 +37,8 @@ namespace HappyCoffeeApp
             string password = txt_Passlogin.Text.Trim();
             if (login(username, password))
             {
-                TableManager tableManager = new TableManager();
+                Account loginAccount = AccountDAO.Instance.GetAccountByUserName(username); 
+                TableManager tableManager = new TableManager(loginAccount);
                 this.Hide();
                 tableManager.ShowDialog();
                 this.Show();

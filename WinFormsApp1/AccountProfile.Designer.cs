@@ -56,25 +56,27 @@
             // 
             panel1.Controls.Add(txt_name);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(10, 9);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(432, 72);
+            panel1.Size = new Size(378, 54);
             panel1.TabIndex = 0;
             // 
             // txt_name
             // 
-            txt_name.Location = new Point(144, 30);
+            txt_name.Location = new Point(126, 22);
+            txt_name.Margin = new Padding(3, 2, 3, 2);
             txt_name.Name = "txt_name";
             txt_name.ReadOnly = true;
-            txt_name.Size = new Size(266, 27);
+            txt_name.Size = new Size(233, 23);
             txt_name.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 30);
+            label1.Location = new Point(10, 22);
             label1.Name = "label1";
-            label1.Size = new Size(110, 20);
+            label1.Size = new Size(88, 15);
             label1.TabIndex = 3;
             label1.Text = "Tên đăng nhập:";
             // 
@@ -82,24 +84,26 @@
             // 
             panel2.Controls.Add(txt_DisplayName);
             panel2.Controls.Add(label2);
-            panel2.Location = new Point(12, 90);
+            panel2.Location = new Point(10, 68);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(432, 75);
+            panel2.Size = new Size(378, 56);
             panel2.TabIndex = 5;
             // 
             // txt_DisplayName
             // 
-            txt_DisplayName.Location = new Point(144, 30);
+            txt_DisplayName.Location = new Point(126, 22);
+            txt_DisplayName.Margin = new Padding(3, 2, 3, 2);
             txt_DisplayName.Name = "txt_DisplayName";
-            txt_DisplayName.Size = new Size(266, 27);
+            txt_DisplayName.Size = new Size(233, 23);
             txt_DisplayName.TabIndex = 4;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 30);
+            label2.Location = new Point(10, 22);
             label2.Name = "label2";
-            label2.Size = new Size(88, 20);
+            label2.Size = new Size(71, 15);
             label2.TabIndex = 3;
             label2.Text = "Tên hiển thị:";
             // 
@@ -107,25 +111,27 @@
             // 
             panel3.Controls.Add(txt_Password);
             panel3.Controls.Add(label3);
-            panel3.Location = new Point(12, 171);
+            panel3.Location = new Point(10, 128);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(432, 75);
+            panel3.Size = new Size(378, 56);
             panel3.TabIndex = 6;
             // 
             // txt_Password
             // 
-            txt_Password.Location = new Point(144, 30);
+            txt_Password.Location = new Point(126, 22);
+            txt_Password.Margin = new Padding(3, 2, 3, 2);
             txt_Password.Name = "txt_Password";
-            txt_Password.Size = new Size(266, 27);
+            txt_Password.Size = new Size(233, 23);
             txt_Password.TabIndex = 4;
             txt_Password.UseSystemPasswordChar = true;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 30);
+            label3.Location = new Point(10, 22);
             label3.Name = "label3";
-            label3.Size = new Size(73, 20);
+            label3.Size = new Size(60, 15);
             label3.TabIndex = 3;
             label3.Text = "Mật khẩu:";
             // 
@@ -133,24 +139,26 @@
             // 
             panel4.Controls.Add(txt_NewPassword);
             panel4.Controls.Add(label4);
-            panel4.Location = new Point(12, 252);
+            panel4.Location = new Point(10, 189);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(432, 75);
+            panel4.Size = new Size(378, 56);
             panel4.TabIndex = 7;
             // 
             // txt_NewPassword
             // 
-            txt_NewPassword.Location = new Point(144, 30);
+            txt_NewPassword.Location = new Point(126, 22);
+            txt_NewPassword.Margin = new Padding(3, 2, 3, 2);
             txt_NewPassword.Name = "txt_NewPassword";
-            txt_NewPassword.Size = new Size(266, 27);
+            txt_NewPassword.Size = new Size(233, 23);
             txt_NewPassword.TabIndex = 4;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 30);
+            label4.Location = new Point(10, 22);
             label4.Name = "label4";
-            label4.Size = new Size(103, 20);
+            label4.Size = new Size(84, 15);
             label4.TabIndex = 3;
             label4.Text = "Mật khẩu mới:";
             // 
@@ -158,41 +166,46 @@
             // 
             panel5.Controls.Add(txt_ReEnterPass);
             panel5.Controls.Add(label5);
-            panel5.Location = new Point(12, 333);
+            panel5.Location = new Point(10, 250);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(432, 75);
+            panel5.Size = new Size(378, 56);
             panel5.TabIndex = 7;
             // 
             // txt_ReEnterPass
             // 
-            txt_ReEnterPass.Location = new Point(144, 30);
+            txt_ReEnterPass.Location = new Point(126, 22);
+            txt_ReEnterPass.Margin = new Padding(3, 2, 3, 2);
             txt_ReEnterPass.Name = "txt_ReEnterPass";
-            txt_ReEnterPass.Size = new Size(266, 27);
+            txt_ReEnterPass.Size = new Size(233, 23);
             txt_ReEnterPass.TabIndex = 4;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 30);
+            label5.Location = new Point(10, 22);
             label5.Name = "label5";
-            label5.Size = new Size(137, 20);
+            label5.Size = new Size(112, 15);
             label5.TabIndex = 3;
             label5.Text = "Xác nhận mật khẩu:";
             // 
             // btn_Update
             // 
-            btn_Update.Location = new Point(230, 428);
+            btn_Update.Location = new Point(201, 321);
+            btn_Update.Margin = new Padding(3, 2, 3, 2);
             btn_Update.Name = "btn_Update";
-            btn_Update.Size = new Size(94, 29);
+            btn_Update.Size = new Size(82, 22);
             btn_Update.TabIndex = 8;
             btn_Update.Text = "Cập nhật";
             btn_Update.UseVisualStyleBackColor = true;
+            btn_Update.Click += btn_Update_Click;
             // 
             // btn_Exitt
             // 
-            btn_Exitt.Location = new Point(350, 428);
+            btn_Exitt.Location = new Point(306, 321);
+            btn_Exitt.Margin = new Padding(3, 2, 3, 2);
             btn_Exitt.Name = "btn_Exitt";
-            btn_Exitt.Size = new Size(94, 29);
+            btn_Exitt.Size = new Size(82, 22);
             btn_Exitt.TabIndex = 9;
             btn_Exitt.Text = "Thoát";
             btn_Exitt.UseVisualStyleBackColor = true;
@@ -201,10 +214,10 @@
             // AccountProfile
             // 
             AcceptButton = btn_Update;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btn_Exitt;
-            ClientSize = new Size(481, 484);
+            ClientSize = new Size(421, 363);
             Controls.Add(btn_Exitt);
             Controls.Add(btn_Update);
             Controls.Add(panel5);
@@ -212,6 +225,7 @@
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AccountProfile";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Thông tin cá nhân";

@@ -11,19 +11,32 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static HappyCoffeeApp.AccountProfile;
 using static System.Windows.Forms.ListViewItem;
 
 namespace HappyCoffeeApp
 {
     public partial class TableManager : Form
     {
-        public TableManager()
+        private Account loginAccount;
+        public Account LoginAccount
+        {
+            get { return loginAccount; }
+            set { loginAccount = value; ChangeAccount(loginAccount.Type); }
+        }
+        public TableManager(Account acc)
         {
             InitializeComponent();
+            this.LoginAccount = acc;
             LoadTable();
             LoadCategory();
         }      
 
+        void ChangeAccount(int type)
+        {
+            adminToolStripMenuItem.Enabled = type == 1;
+            thôngTinToolStripMenuItem.Text += " (" + LoginAccount.DisplayName + ")";
+        }
         void LoadCategory()
         {
             List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
@@ -109,10 +122,14 @@ namespace HappyCoffeeApp
         }
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccountProfile accountProfile = new AccountProfile();
+            AccountProfile accountProfile = new AccountProfile(LoginAccount);
+            accountProfile.UpdateAccount += f_UpdateAccount;
             accountProfile.ShowDialog();
         }
-
+        void f_UpdateAccount(object sender, AccountEvent e)
+        {
+            thôngTinToolStripMenuItem.Text = "Thông tin tài khoản (" + e.Acc.DisplayName + ")";
+        }
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Admin admin = new Admin();
