@@ -37,9 +37,6 @@
             panel1 = new Panel();
             dGv_Total = new DataGridView();
             tcb_Drinks = new TabPage();
-            panel6 = new Panel();
-            btn_CheckDrinks = new Button();
-            txt_CheckNameDrinks = new TextBox();
             panel5 = new Panel();
             btn_ShowDrinks = new Button();
             btn_UpdateDrinks = new Button();
@@ -100,7 +97,6 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dGv_Total).BeginInit();
             tcb_Drinks.SuspendLayout();
-            panel6.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)num_Price).BeginInit();
@@ -160,6 +156,7 @@
             btn_ViewBill.TabIndex = 2;
             btn_ViewBill.Text = "Thống kê";
             btn_ViewBill.UseVisualStyleBackColor = true;
+            btn_ViewBill.Click += btn_ViewBill_Click;
             // 
             // dTP_ToDate
             // 
@@ -191,11 +188,9 @@
             dGv_Total.RowHeadersWidth = 51;
             dGv_Total.Size = new Size(863, 341);
             dGv_Total.TabIndex = 0;
-            dGv_Total.CellContentClick += dGv_Total_CellContentClick;
             // 
             // tcb_Drinks
             // 
-            tcb_Drinks.Controls.Add(panel6);
             tcb_Drinks.Controls.Add(panel5);
             tcb_Drinks.Controls.Add(panel4);
             tcb_Drinks.Controls.Add(panel3);
@@ -206,31 +201,6 @@
             tcb_Drinks.TabIndex = 1;
             tcb_Drinks.Text = "Đồ uống";
             tcb_Drinks.UseVisualStyleBackColor = true;
-            // 
-            // panel6
-            // 
-            panel6.Controls.Add(btn_CheckDrinks);
-            panel6.Controls.Add(txt_CheckNameDrinks);
-            panel6.Location = new Point(517, 6);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(358, 62);
-            panel6.TabIndex = 3;
-            // 
-            // btn_CheckDrinks
-            // 
-            btn_CheckDrinks.Location = new Point(261, 3);
-            btn_CheckDrinks.Name = "btn_CheckDrinks";
-            btn_CheckDrinks.Size = new Size(94, 56);
-            btn_CheckDrinks.TabIndex = 2;
-            btn_CheckDrinks.Text = "Tìm";
-            btn_CheckDrinks.UseVisualStyleBackColor = true;
-            // 
-            // txt_CheckNameDrinks
-            // 
-            txt_CheckNameDrinks.Location = new Point(3, 18);
-            txt_CheckNameDrinks.Name = "txt_CheckNameDrinks";
-            txt_CheckNameDrinks.Size = new Size(252, 27);
-            txt_CheckNameDrinks.TabIndex = 3;
             // 
             // panel5
             // 
@@ -260,6 +230,7 @@
             btn_UpdateDrinks.TabIndex = 2;
             btn_UpdateDrinks.Text = "Sửa";
             btn_UpdateDrinks.UseVisualStyleBackColor = true;
+            btn_UpdateDrinks.Click += btn_UpdateDrinks_Click;
             // 
             // btb_DelDrinks
             // 
@@ -269,6 +240,7 @@
             btb_DelDrinks.TabIndex = 1;
             btb_DelDrinks.Text = "Xóa";
             btb_DelDrinks.UseVisualStyleBackColor = true;
+            btb_DelDrinks.Click += btb_DelDrinks_Click;
             // 
             // btn_AddDrinks
             // 
@@ -278,6 +250,7 @@
             btn_AddDrinks.TabIndex = 0;
             btn_AddDrinks.Text = "Thêm";
             btn_AddDrinks.UseVisualStyleBackColor = true;
+            btn_AddDrinks.Click += btn_AddDrinks_Click;
             // 
             // panel4
             // 
@@ -318,6 +291,7 @@
             cmb_DrinksCategory.Name = "cmb_DrinksCategory";
             cmb_DrinksCategory.Size = new Size(241, 28);
             cmb_DrinksCategory.TabIndex = 9;
+            cmb_DrinksCategory.SelectedIndexChanged += cmb_DrinksCategory_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -371,12 +345,15 @@
             // 
             // dgV_Drinks
             // 
+            dgV_Drinks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgV_Drinks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgV_Drinks.Location = new Point(3, 3);
             dgV_Drinks.Name = "dgV_Drinks";
             dgV_Drinks.RowHeadersWidth = 51;
+            dgV_Drinks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgV_Drinks.Size = new Size(502, 361);
             dgV_Drinks.TabIndex = 0;
+            dgV_Drinks.SelectionChanged += dgV_Drinks_SelectionChanged;
             // 
             // tcb_DrinksCategory
             // 
@@ -396,10 +373,12 @@
             // 
             // dGv_Category
             // 
+            dGv_Category.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dGv_Category.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dGv_Category.Location = new Point(10, 75);
             dGv_Category.Name = "dGv_Category";
             dGv_Category.RowHeadersWidth = 51;
+            dGv_Category.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dGv_Category.Size = new Size(502, 366);
             dGv_Category.TabIndex = 10;
             // 
@@ -411,6 +390,7 @@
             btn_ViewCategory.TabIndex = 8;
             btn_ViewCategory.Text = "Xem";
             btn_ViewCategory.UseVisualStyleBackColor = true;
+            btn_ViewCategory.Click += btn_ViewCategory_Click;
             // 
             // btn_EditCategory
             // 
@@ -420,6 +400,7 @@
             btn_EditCategory.TabIndex = 7;
             btn_EditCategory.Text = "Sửa";
             btn_EditCategory.UseVisualStyleBackColor = true;
+            btn_EditCategory.Click += btn_EditCategory_Click;
             // 
             // btn_DelCaregory
             // 
@@ -429,6 +410,7 @@
             btn_DelCaregory.TabIndex = 5;
             btn_DelCaregory.Text = "Xóa";
             btn_DelCaregory.UseVisualStyleBackColor = true;
+            btn_DelCaregory.Click += btn_DelCaregory_Click;
             // 
             // btn_AddCategory
             // 
@@ -438,6 +420,7 @@
             btn_AddCategory.TabIndex = 4;
             btn_AddCategory.Text = "Thêm";
             btn_AddCategory.UseVisualStyleBackColor = true;
+            btn_AddCategory.Click += btn_AddCategory_Click;
             // 
             // panel8
             // 
@@ -454,7 +437,6 @@
             // 
             txt_DangMucCaregory.Location = new Point(101, 57);
             txt_DangMucCaregory.Name = "txt_DangMucCaregory";
-            txt_DangMucCaregory.ReadOnly = true;
             txt_DangMucCaregory.Size = new Size(241, 27);
             txt_DangMucCaregory.TabIndex = 9;
             // 
@@ -502,10 +484,12 @@
             // 
             // dGv_taBle
             // 
+            dGv_taBle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dGv_taBle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dGv_taBle.Location = new Point(10, 75);
             dGv_taBle.Name = "dGv_taBle";
             dGv_taBle.RowHeadersWidth = 51;
+            dGv_taBle.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dGv_taBle.Size = new Size(502, 366);
             dGv_taBle.TabIndex = 16;
             // 
@@ -517,6 +501,7 @@
             btn_ViewTable.TabIndex = 15;
             btn_ViewTable.Text = "Xem";
             btn_ViewTable.UseVisualStyleBackColor = true;
+            btn_ViewTable.Click += btn_ViewTable_Click;
             // 
             // btn_EditTable
             // 
@@ -526,6 +511,7 @@
             btn_EditTable.TabIndex = 14;
             btn_EditTable.Text = "Sửa";
             btn_EditTable.UseVisualStyleBackColor = true;
+            btn_EditTable.Click += btn_EditTable_Click;
             // 
             // btn_DelTable
             // 
@@ -535,6 +521,7 @@
             btn_DelTable.TabIndex = 12;
             btn_DelTable.Text = "Xóa";
             btn_DelTable.UseVisualStyleBackColor = true;
+            btn_DelTable.Click += btn_DelTable_Click;
             // 
             // btn_AddTable
             // 
@@ -544,6 +531,7 @@
             btn_AddTable.TabIndex = 11;
             btn_AddTable.Text = "Thêm";
             btn_AddTable.UseVisualStyleBackColor = true;
+            btn_AddTable.Click += btn_AddTable_Click;
             // 
             // panel7
             // 
@@ -579,7 +567,6 @@
             // 
             txt_TableName.Location = new Point(101, 57);
             txt_TableName.Name = "txt_TableName";
-            txt_TableName.ReadOnly = true;
             txt_TableName.Size = new Size(238, 27);
             txt_TableName.TabIndex = 9;
             // 
@@ -627,12 +614,15 @@
             // 
             // dGv_accCount
             // 
+            dGv_accCount.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dGv_accCount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dGv_accCount.Location = new Point(6, 74);
             dGv_accCount.Name = "dGv_accCount";
             dGv_accCount.RowHeadersWidth = 51;
+            dGv_accCount.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dGv_accCount.Size = new Size(502, 366);
             dGv_accCount.TabIndex = 21;
+            dGv_accCount.SelectionChanged += dGv_accCount_SelectionChanged;
             // 
             // panel9
             // 
@@ -656,6 +646,7 @@
             btn_ResetPass.TabIndex = 22;
             btn_ResetPass.Text = "Đặt lại mật khẩu";
             btn_ResetPass.UseVisualStyleBackColor = true;
+            btn_ResetPass.Click += btn_ResetPass_Click;
             // 
             // cmb_AccountType
             // 
@@ -678,7 +669,6 @@
             // 
             txt_DisplayName.Location = new Point(122, 57);
             txt_DisplayName.Name = "txt_DisplayName";
-            txt_DisplayName.ReadOnly = true;
             txt_DisplayName.Size = new Size(217, 27);
             txt_DisplayName.TabIndex = 9;
             // 
@@ -687,9 +677,9 @@
             label10.AutoSize = true;
             label10.Location = new Point(16, 60);
             label10.Name = "label10";
-            label10.Size = new Size(88, 20);
+            label10.Size = new Size(73, 20);
             label10.TabIndex = 8;
-            label10.Text = "Tên hiển thị:";
+            label10.Text = "Mật khẩu:";
             // 
             // label11
             // 
@@ -704,7 +694,6 @@
             // 
             txt_UserName.Location = new Point(122, 19);
             txt_UserName.Name = "txt_UserName";
-            txt_UserName.ReadOnly = true;
             txt_UserName.Size = new Size(217, 27);
             txt_UserName.TabIndex = 5;
             // 
@@ -725,6 +714,7 @@
             btn_editAccount.TabIndex = 18;
             btn_editAccount.Text = "Sửa";
             btn_editAccount.UseVisualStyleBackColor = true;
+            btn_editAccount.Click += btn_editAccount_Click;
             // 
             // btn_delAccount
             // 
@@ -734,6 +724,7 @@
             btn_delAccount.TabIndex = 17;
             btn_delAccount.Text = "Xóa";
             btn_delAccount.UseVisualStyleBackColor = true;
+            btn_delAccount.Click += btn_delAccount_Click;
             // 
             // btn_addAccount
             // 
@@ -743,6 +734,7 @@
             btn_addAccount.TabIndex = 16;
             btn_addAccount.Text = "Thêm";
             btn_addAccount.UseVisualStyleBackColor = true;
+            btn_addAccount.Click += btn_addAccount_Click;
             // 
             // Admin
             // 
@@ -754,17 +746,13 @@
             Controls.Add(tbc_Admin);
             MaximizeBox = false;
             Name = "Admin";
-            StartPosition = FormStartPosition.Manual;
             Text = "Admin";
-            Load += Admin_Load;
             tbc_Admin.ResumeLayout(false);
             tcb_Bill.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dGv_Total).EndInit();
             tcb_Drinks.ResumeLayout(false);
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
             panel5.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
@@ -800,7 +788,6 @@
         private DataGridView dGv_Total;
         private Button btn_ViewBill;
         private DateTimePicker dTP_ToDate;
-        private Panel panel6;
         private Panel panel5;
         private Panel panel4;
         private Panel panel3;
@@ -809,8 +796,6 @@
         private Button btb_DelDrinks;
         private Button btn_AddDrinks;
         private DataGridView dgV_Drinks;
-        private TextBox txt_CheckNameDrinks;
-        private Button btn_CheckDrinks;
         private Label label1;
         private TextBox txt_DrinksID;
         private Label label2;

@@ -18,10 +18,6 @@ namespace HappyCoffeeApp.DTO
 
         public Drink(DataRow row)
         {
-            ID = (int)row["MaSP"];
-            Name = row["TenSP"].ToString();
-            Price = (decimal)row["DonGia"];
-            CategoryID = (int)row["MaLoaiSanPham"];
         }
     }
 }

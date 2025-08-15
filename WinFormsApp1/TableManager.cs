@@ -65,7 +65,9 @@ namespace HappyCoffeeApp
                 };
 
                 fLP_Table.Controls.Add(btn);
+                MessageBox.Show("Số bàn: " + fLP_Table.Controls.Count);
             }
+            
         }
 
         void ShowBill(int maBan)

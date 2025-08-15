@@ -42,18 +42,14 @@ namespace HappyCoffeeApp.DAO
             return DataProvider.Instance.ExecuteNonQuery(sql, new object[] { maBan }) > 0;
         }
 
-        public bool SetStatus(int maBan, string status)
-        {
-            string sql = "UPDATE Ban SET TrangThai=@p0 WHERE MaBan=@p1";
-            return DataProvider.Instance.ExecuteNonQuery(sql, new object[] { status, maBan }) > 0;
-        }
-        public void SwitchTable(int tableFromId, int tableToId)
-        {
-            string query = @"
-        UPDATE HoaDon
-        SET MaBan = @tableTo
-        WHERE MaBan = @tableFrom AND TrangThai = N'Chưa thanh toán'";
-            DataProvider.Instance.ExecuteNonQuery(query, new object[] { tableToId, tableFromId });
+            DataTable data = DataProvider.Instance.ExecuteQuery("USP_GetTableList");
+            foreach (DataRow item in data.Rows)
+            {
+                Table table = new Table(item);
+                tableList.Add(table);
+            }
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM TableFood");
+            return tableList;
         }
 
 
