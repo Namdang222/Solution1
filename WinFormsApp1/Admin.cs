@@ -21,7 +21,6 @@ namespace HappyCoffeeApp
         public Admin()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
         }
 
         private void Admin_Load(object sender, EventArgs e)
