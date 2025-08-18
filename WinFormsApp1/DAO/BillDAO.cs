@@ -9,6 +9,23 @@ namespace HappyCoffeeApp.DAO
         public static BillDAO Instance => instance ??= new BillDAO();
         private BillDAO() { }
 
+        public int GetUncheckBillIDByTableID(int id)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM HoaDon WHERE MaBan = " + id + " AND TongTien = 0");
+
+            if (data.Rows.Count > 0)
+            {
+                Bill bill = new Bill(data.Rows[0]);
+                return bill.MaHD;
+            }
+            return -1;
+        }
+        public void CheckOut(int id)
+        {
+            string query = "UPDATE HoaDon SET status = 1 WHERE MaHD = " + id;
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
+
         // Lấy bill chưa thanh toán hoặc tạo mới nếu chưa có
         public int GetOrCreateOpenBillByTable(int maBan)
         {

@@ -181,7 +181,6 @@ namespace HappyCoffeeApp
             }
             else MessageBox.Show("Cập nhật thất bại!");
         }
-
         private void dgV_Drinks_SelectionChanged(object sender, EventArgs e)
         {
             if (dgV_Drinks.CurrentRow != null)
@@ -210,7 +209,6 @@ namespace HappyCoffeeApp
         }
 
         #endregion
-
         #region Category CRUD
         private void btn_AddCategory_Click(object sender, EventArgs e)
         {
@@ -222,7 +220,6 @@ namespace HappyCoffeeApp
             }
             else MessageBox.Show("Thêm thất bại!");
         }
-
         private void btn_DelCaregory_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(textBox3.Text);
@@ -233,7 +230,6 @@ namespace HappyCoffeeApp
             }
             else MessageBox.Show("Xóa thất bại!");
         }
-
         private void btn_EditCategory_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(textBox3.Text);
@@ -245,13 +241,11 @@ namespace HappyCoffeeApp
             }
             else MessageBox.Show("Cập nhật thất bại!");
         }
-
         private void btn_ViewCategory_Click(object sender, EventArgs e)
         {
             categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
         }
         #endregion
-
         #region Table CRUD
         private void HideTableIDColumn()
         {
@@ -260,7 +254,6 @@ namespace HappyCoffeeApp
                 dGv_taBle.Columns["ID"].Visible = false;
             }
         }
-
         private void btn_AddTable_Click(object sender, EventArgs e)
         {
             string name = txt_TableName.Text;
@@ -272,7 +265,6 @@ namespace HappyCoffeeApp
             }
             else MessageBox.Show("Thêm thất bại!");
         }
-
         private void btn_DelTable_Click(object sender, EventArgs e)
         {
             if (dGv_taBle.CurrentRow == null) return;
@@ -286,7 +278,6 @@ namespace HappyCoffeeApp
             }
             else MessageBox.Show("Không thể xóa bàn đang có liên kết!");
         }
-
         private void btn_EditTable_Click(object sender, EventArgs e)
         {
             if (dGv_taBle.CurrentRow == null) return;
@@ -303,13 +294,11 @@ namespace HappyCoffeeApp
             }
             else MessageBox.Show("Cập nhật thất bại!");
         }
-
         private void btn_ViewTable_Click(object sender, EventArgs e)
         {
             tableList.DataSource = TableDAO.Instance.LoadTableList();
         }
         #endregion
-
         #region Account CRUD
         private void LoadAccountTypeCombo()
         {
@@ -317,7 +306,6 @@ namespace HappyCoffeeApp
             cmb_AccountType.Items.Add("User");
             cmb_AccountType.Items.Add("Admin");
         }
-
         private void btn_addAccount_Click(object sender, EventArgs e)
         {
             string role = cmb_AccountType.SelectedItem?.ToString() ?? "User";
@@ -329,7 +317,6 @@ namespace HappyCoffeeApp
             }
             else MessageBox.Show("Thêm thất bại!");
         }
-
         private void btn_editAccount_Click(object sender, EventArgs e)
         {
             string role = cmb_AccountType.SelectedItem?.ToString() ?? "User";
@@ -341,8 +328,6 @@ namespace HappyCoffeeApp
             }
             else MessageBox.Show("Cập nhật thất bại!");
         }
-
-
         private void btn_delAccount_Click(object sender, EventArgs e)
         {
             string username = txt_UserName.Text;
@@ -373,10 +358,8 @@ namespace HappyCoffeeApp
             txt_UserName.Text = acc.TenDangNhap;
             txt_DisplayName.Text = acc.MatKhau;
             cmb_AccountType.SelectedItem = acc.Role; // bind Role đúng với combo
-
         }
         #endregion
-
         #region View Bill
         private void btn_ViewBill_Click(object sender, EventArgs e)
         {
@@ -390,10 +373,7 @@ namespace HappyCoffeeApp
             if (dGv_Total.Columns["ID"] != null) dGv_Total.Columns["ID"].Visible = false;
             if (dGv_Total.Columns["MaHD"] != null) dGv_Total.Columns["MaHD"].Visible = false;
             if (dGv_Total.Columns["MaSP"] != null) dGv_Total.Columns["MaSP"].Visible = false;
-
         }
         #endregion
-
-
     }
 }

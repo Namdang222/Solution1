@@ -744,7 +744,6 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(908, 505);
             Controls.Add(tbc_Admin);
-            MaximizeBox = false;
             Name = "Admin";
             Text = "Admin";
             tbc_Admin.ResumeLayout(false);

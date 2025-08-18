@@ -6,6 +6,7 @@ namespace HappyCoffeeApp.DAO
     public class BillInfoDAO
     {
         private static BillInfoDAO instance;
+
         public static BillInfoDAO Instance => instance ??= new BillInfoDAO();
         private BillInfoDAO() { }
 
@@ -32,6 +33,7 @@ namespace HappyCoffeeApp.DAO
                     "INSERT INTO ChiTietHoaDon(SoLuong, DonGia, MaHD, MaSP) VALUES (@p0, @p1, @p2, @p3)",
                     new object[] { soLuong, price, maHD, maSP });
             }
+
         }
         public List<BillInfo> GetBillInfoList(DateTime fromDate, DateTime toDate)
         {
@@ -51,6 +53,7 @@ namespace HappyCoffeeApp.DAO
                 list.Add(new BillInfo(row));
             }
             return list;
+
         }
 
     }

@@ -13,6 +13,9 @@ namespace HappyCoffeeApp.DAO
         private DrinkDAO() { }
         {
 
+            string query = "SELECT * FROM SanPham where MaSP = " + id;
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
             {
             }
 

@@ -138,7 +138,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(6, 3, 0, 3);
-            menuStrip1.Size = new Size(1010, 30);
+            menuStrip1.Size = new Size(908, 30);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -184,7 +184,7 @@
             lsv_Bill.GridLines = true;
             lsv_Bill.Location = new Point(3, 0);
             lsv_Bill.Name = "lsv_Bill";
-            lsv_Bill.Size = new Size(446, 263);
+            lsv_Bill.Size = new Size(432, 263);
             lsv_Bill.TabIndex = 0;
             lsv_Bill.UseCompatibleStateImageBehavior = false;
             lsv_Bill.View = View.Details;
@@ -227,6 +227,7 @@
             cbFood.Name = "cbFood";
             cbFood.Size = new Size(154, 28);
             cbFood.TabIndex = 3;
+            cbFood.SelectedIndexChanged += cbFood_SelectedIndexChanged;
             // 
             // num_Count
             // 
@@ -269,7 +270,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(1010, 683);
+            ClientSize = new Size(908, 505);
             Controls.Add(fLP_Table);
             Controls.Add(panel4);
             Controls.Add(panel3);
