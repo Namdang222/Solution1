@@ -102,6 +102,7 @@
             btn_SwitchTable.TabIndex = 4;
             btn_SwitchTable.Text = "Chuyển bàn";
             btn_SwitchTable.UseVisualStyleBackColor = true;
+            btn_SwitchTable.Click += btn_SwitchTable_Click;
             // 
             // numericUpDown1
             // 
@@ -275,8 +276,9 @@
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "TableManager";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.Manual;
             Text = "TableManager";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

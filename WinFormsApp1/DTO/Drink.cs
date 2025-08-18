@@ -9,6 +9,17 @@ namespace HappyCoffeeApp.DTO
 {
     public class Drink
     {
+
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int CategoryID { get; set; }
+
+        public Drink() { }
+
+        public Drink(DataRow row)
+        {
+
         public Drink(int maSP, string tenSP, int maLoaiSanPham, float donGia)
         {
             this.MaSP = maSP;
@@ -51,6 +62,7 @@ namespace HappyCoffeeApp.DTO
         {
             get { return donGia; }
             set { donGia = value; }
+
         }
 
     }

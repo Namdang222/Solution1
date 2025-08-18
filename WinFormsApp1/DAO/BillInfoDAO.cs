@@ -1,10 +1,5 @@
 ﻿using HappyCoffeeApp.DTO;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HappyCoffeeApp.DAO
 {
@@ -38,6 +33,27 @@ namespace HappyCoffeeApp.DAO
                     "INSERT INTO ChiTietHoaDon(SoLuong, DonGia, MaHD, MaSP) VALUES (@p0, @p1, @p2, @p3)",
                     new object[] { soLuong, price, maHD, maSP });
             }
+
+        }
+        public List<BillInfo> GetBillInfoList(DateTime fromDate, DateTime toDate)
+        {
+            List<BillInfo> list = new List<BillInfo>();
+            string query = @"
+        SELECT ct.MaCTHD, ct.MaHD, ct.MaSP, ct.SoLuong, ct.DonGia, 
+               sp.TenSanPham, hd.NgayBan, nv.TenNhanVien
+        FROM ChiTietHoaDon ct
+        JOIN HoaDon hd ON ct.MaHD = hd.ID
+        JOIN SanPham sp ON ct.MaSP = sp.ID
+        JOIN NhanVien nv ON hd.NhanVienID = nv.ID
+        WHERE hd.NgayBan BETWEEN @from AND @to";
+
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(new BillInfo(row));
+            }
+            return list;
+
         }
 
     }
