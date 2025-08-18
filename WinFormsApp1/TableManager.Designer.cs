@@ -137,6 +137,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { adminToolStripMenuItem, thôngTinToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
+
             menuStrip1.Padding = new Padding(6, 3, 0, 3);
             menuStrip1.Size = new Size(908, 30);
             menuStrip1.TabIndex = 2;

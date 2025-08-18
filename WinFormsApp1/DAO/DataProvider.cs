@@ -29,6 +29,10 @@ namespace HappyCoffeeApp.DAO
             return names;
         }
 
+    }
+        private DataProvider(){}
+        private string connectionString = "Data Source=ABCD\\SQL;Initial Catalog=PRO131;Integrated Security=True;Trust Server Certificate=True";
+
         // Thêm parameters vào SqlCommand theo logic đã mô tả
         private void AddParameters(SqlCommand cmd, string query, object[] parameter)
         {
@@ -57,7 +61,6 @@ namespace HappyCoffeeApp.DAO
                 cmd.Parameters.AddWithValue(names[i], parameter[i] ?? DBNull.Value);
             }
         }
-
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable dt = new DataTable();
