@@ -9,46 +9,94 @@ namespace HappyCoffeeApp.DTO
 {
     public class BillInfo
     {
-        public BillInfo(int id, int billID, int foodID, int count)
+
+        public int ID { get; set; }
+        public int MaHD { get; set; }
+        public int MaSP { get; set; }
+        public int SoLuong { get; set; }
+        public decimal DonGia { get; set; }
+
+        // Dành cho hiển thị
+        public string TenSanPham { get; set; }
+        public DateTime NgayBan { get; set; }
+        public string TenNhanVien { get; set; }
+
+        public decimal ThanhTien => SoLuong * DonGia;
+
+        public BillInfo(int id, int maHD, int maSP, int soLuong, decimal donGia)
         {
-            this.ID = id;
-            this.BillID = billID;
-            this.FoodID = foodID;
-            this.Count = count;
-        }
-        public BillInfo(DataRow row) 
-        {
-            this.ID = (int)row["id"];
-            this.BillID = (int)row["idbill"];
-            this.FoodID = (int)row["idfood"];
-            this.Count = (int)row["count"];
-        }
-        private int count;
-        public int Count
-        { 
-            get { return count; }
-            set { count = value; }
+            ID = id;
+            MaHD = maHD;
+            MaSP = maSP;
+            SoLuong = soLuong;
+            DonGia = donGia;
         }
 
-        private int foodID;
-        public int FoodID
+        public BillInfo(DataRow row)
         {
-            get { return foodID; }
-            set { foodID = value; }
+            ID = (int)row["MaCTHD"];
+            MaHD = (int)row["MaHD"];
+            MaSP = (int)row["MaSP"];
+            SoLuong = (int)row["SoLuong"];
+            DonGia = (decimal)row["DonGia"];
+            // Nếu DataRow có các cột TenSanPham, NgayBan, TenNhanVien
+            if (row.Table.Columns.Contains("TenSanPham")) TenSanPham = row["TenSanPham"].ToString();
+            if (row.Table.Columns.Contains("NgayBan")) NgayBan = (DateTime)row["NgayBan"];
+            if (row.Table.Columns.Contains("TenNhanVien")) TenNhanVien = row["TenNhanVien"].ToString();
+
+        public BillInfo(int maCTHD, int soLuong, decimal donGia, int maHD, int maSP)
+        {
+            this.MaCTHD = maCTHD;
+            this.SoLuong = soLuong;
+            this.DonGia = donGia;
+            this.MaHD = maHD;
+            this.MaSP = maSP;
         }
 
-        private int billID;
-        public int BillID
+        public BillInfo(DataRow row)
         {
-            get { return billID; }
-            set { billID = value; }
+            this.MaCTHD = (int)row["MaCTHD"];
+            this.SoLuong = (int)row["SoLuong"];
+            this.DonGia = Convert.ToDecimal(row["DonGia"]);
+            this.MaHD = (int)row["MaHD"];
+            this.MaSP = (int)row["MaSP"];
         }
 
-        private int iD;
-        public int ID
+        private int maCTHD;
+        public int MaCTHD
         {
-            get { return iD; }
-            set { iD = value; }
+            get { return maCTHD; }
+            set { maCTHD = value; }
         }
+
+        private int soLuong;
+        public int SoLuong
+        {
+            get { return soLuong; }
+            set { soLuong = value; }
+        }
+
+        private decimal donGia;
+        public decimal DonGia
+        {
+            get { return donGia; }
+            set { donGia = value; }
+        }
+
+        private int maHD;
+        public int MaHD
+        {
+            get { return maHD; }
+            set { maHD = value; }
+
+        }
+
+        private int maSP;
+        public int MaSP
+        {
+            get { return maSP; }
+            set { maSP = value; }
+        }
+
     }
 }

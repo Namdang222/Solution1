@@ -9,6 +9,7 @@ namespace HappyCoffeeApp.DTO
 {
     public class Account
     {
+
         public Account(string userName, string displayName, int type, string password = null )
         {
             this.UserName = userName;
@@ -51,6 +52,19 @@ namespace HappyCoffeeApp.DTO
         {
             get { return userName; }
             set { userName = value; }
+        }
+    }
+}
+
+        public string TenDangNhap { get; set; }
+        public string MatKhau { get; set; }
+        public string Role { get; set; } // "User" hoặc "Admin"
+
+        public Account(string username, string password, string role)
+        {
+            TenDangNhap = username;
+            MatKhau = password;
+            Role = role;
         }
     }
 }

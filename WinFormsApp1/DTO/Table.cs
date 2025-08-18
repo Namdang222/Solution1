@@ -8,37 +8,57 @@ namespace HappyCoffeeApp.DTO
 {
     public class Table
     {
-        public Table(int id, string name, string status)
+        public Table(int maBan, string viTri, string trangThai)
         {
-            this.ID = id;
-            this.Name = name;
-            this.Status = status;
-        }
-        public Table(DataRow row)
-        {
-            this.ID = (int)row["id"];
-            this.Name = row["name"].ToString();
-            this.Status = row["status"].ToString();
-        }
-        
-        private string status;
-        public string Status
-        {
-            get { return status; }
-            set { status = value; }
+
+            ID = id;
+            Name = name;
+            Status = status;
+
+            this.MaBan = maBan;
+            this.ViTri = viTri;
+            this.TrangThai = trangThai;
+
         }
 
-        private string name;
-        public string Name
+        public Table(DataRow row)
         {
-            get { return name; }
-            set { name = value; }
+
+            ID = (int)row["MaBan"];
+            Name = row["ViTri"].ToString();
+            Status = row["TrangThai"].ToString();
         }
-        private int iD;
-        public int ID
+
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Status { get; set; }
+
+            this.MaBan = (int)row["MaBan"];
+            this.ViTri = row["ViTri"].ToString();
+            this.TrangThai = row["TrangThai"].ToString();
+        }
+
+        private int maBan;
+        public int MaBan
         {
-            get { return iD; }
-            set { iD = value; }
+            get { return maBan; }
+            set { maBan = value; }
         }
+
+        private string viTri;
+        public string ViTri
+        {
+            get { return viTri; }
+            set { viTri = value; }
+        }
+
+        private string trangThai;
+        public string TrangThai
+        {
+            get { return trangThai; }
+            set { trangThai = value; }
+        }
+
+
     }
 }
