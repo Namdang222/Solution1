@@ -18,5 +18,6 @@ namespace HappyCoffeeApp.DAO
             foreach (DataRow row in data.Rows) list.Add(new Category(row));
             return list;
         }
+    
     }
 }

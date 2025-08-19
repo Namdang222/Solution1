@@ -10,10 +10,8 @@ namespace HappyCoffeeApp.DAO
     {
         private static DataProvider instance;
         public static DataProvider Instance => instance ??= new DataProvider();
-        private DataProvider() { }
-
         private string connectionString =
-            "Data Source=MSI\\SQLEXPRESS;Initial Catalog=PRO131;Integrated Security=True;Trust Server Certificate=True";
+            "Data Source=MATILDA Catalog=PRO131;Integrated Security=True;Trust Server Certificate=True";
 
         // Lấy danh sách tên param xuất hiện trong query theo thứ tự
         private List<string> GetParameterNames(string query)
@@ -28,10 +26,6 @@ namespace HappyCoffeeApp.DAO
             }
             return names;
         }
-
-    }
-        private DataProvider(){}
-        private string connectionString = "Data Source=ABCD\\SQL;Initial Catalog=PRO131;Integrated Security=True;Trust Server Certificate=True";
 
         // Thêm parameters vào SqlCommand theo logic đã mô tả
         private void AddParameters(SqlCommand cmd, string query, object[] parameter)

@@ -271,7 +271,7 @@ namespace HappyCoffeeApp
             Table table = dGv_taBle.CurrentRow.DataBoundItem as Table;
             if (table == null) return;
 
-            if (TableDAO.Instance.DeleteTable(table.ID))
+            if (TableDAO.Instance.DeleteTable(table.MaBan))
             {
                 MessageBox.Show("Xóa bàn thành công!");
                 tableList.DataSource = TableDAO.Instance.LoadTableList();

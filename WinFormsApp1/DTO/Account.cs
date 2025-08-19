@@ -53,8 +53,6 @@ namespace HappyCoffeeApp.DTO
             get { return userName; }
             set { userName = value; }
         }
-    }
-}
 
         public string TenDangNhap { get; set; }
         public string MatKhau { get; set; }

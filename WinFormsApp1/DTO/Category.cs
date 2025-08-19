@@ -15,11 +15,12 @@ namespace HappyCoffeeApp.DTO
         }
 
         // Constructor nhận DataRow
-        public Category(DataRow row)
-        {
-            // Chú ý trùng với tên cột trong bảng SQL
-            ID = (int)row["MaLoaiSP"];
-            Name = (string?)row["TenLoai"];
+        //public Category(DataRow row)
+        //{
+        //    // Chú ý trùng với tên cột trong bảng SQL
+        //    ID = (int)row["MaLoaiSP"];
+        //    Name = (string?)row["TenLoai"];
+        //}
 
         public Category(int maSP, string tenSP, decimal donGia, int maLoaiSanPham)
         {

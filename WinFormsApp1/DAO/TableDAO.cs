@@ -1,4 +1,5 @@
 ﻿using HappyCoffeeApp.DTO;
+using Microsoft.Azure.Amqp.Framing;
 using System.Collections.Generic;
 using System.Data;
 
@@ -24,6 +25,8 @@ namespace HappyCoffeeApp.DAO
             return list;
         }
 
+
+
         public bool InsertTable(string viTri, string trangThai = "Trống")
         {
             string sql = "INSERT INTO Ban (ViTri, TrangThai) VALUES (@p0, @p1)";
@@ -42,16 +45,13 @@ namespace HappyCoffeeApp.DAO
             return DataProvider.Instance.ExecuteNonQuery(sql, new object[] { maBan }) > 0;
         }
 
-            DataTable data = DataProvider.Instance.ExecuteQuery("USP_GetTableList");
-            foreach (DataRow item in data.Rows)
-            {
-                Table table = new Table(item);
-                tableList.Add(table);
-            }
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM TableFood");
-            return tableList;
-        }
-
-
+        //DataTable data = DataProvider.Instance.ExecuteQuery("USP_GetTableList");
+        //    foreach (DataRow item in Data.Rows)
+        //    {
+        //        Table table = new Table(item);
+        //        tableList.Add(Table)
+        //    }
+        //    DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM TableFood");
+        //    return tableList;
     }
 }

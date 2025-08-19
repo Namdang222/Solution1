@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HappyCoffeeApp.DTO;
+using System;
 using System.Data;
 
 namespace HappyCoffeeApp.DAO
@@ -16,7 +17,7 @@ namespace HappyCoffeeApp.DAO
             if (data.Rows.Count > 0)
             {
                 Bill bill = new Bill(data.Rows[0]);
-                return bill.MaHD;
+                return bill.ID;
             }
             return -1;
         }

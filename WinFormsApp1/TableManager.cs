@@ -58,52 +58,50 @@ namespace HappyCoffeeApp
             }
 
             cbFood.DataSource = listDrink;
-
-        void LoadDrinkListByCategoryID(int MaSP)
-        {
-            List<Drink> listDrinks = DrinkDAO.Instance.GetFoodByCategoryID(MaSP);
-            cbFood.DataSource = listDrinks;
-
-            cbFood.DisplayMember = "Name";
-            cbFood.ValueMember = "ID";
         }
 
+        //void LoadDrinkListByCategoryID(int MaSP)
+        //{
+        //    List<Drink> listDrinks = DrinkDAO.Instance.GetFoodByCategoryID(MaSP);
+        //    cbFood.DataSource = listDrinks;
 
-        void LoadTable()
+        //    cbFood.DisplayMember = "Name";
+        //    cbFood.ValueMember = "ID";
+        //}
+
+
+        public void LoadTable()
         {
-            fLP_Table.Controls.Clear();
-            List<Table> tableList = TableDAO.Instance.LoadTableList();
-
-            foreach (Table table in tableList)
-            {
-      
-              Button btn = new Button() { Width = 100, Height = 60 };
-                btn.Text = $"{table.Name}\n{table.Status}";
-                btn.Tag = table.ID;
-
-                if (table.Status == "Trống")
-                    btn.BackColor = Color.LightGreen;
-                else
-                    btn.BackColor = Color.LightPink;
-
-                btn.Click += (s, e) =>
-
-                Button btn = new Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
-                btn.Text = item.ViTri + Environment.NewLine + item.TrangThai;
-                btn.Click += btn_Click;
-                btn.Tag = item;
-
-                switch (item.TrangThai)
-
+                fLP_Table.Controls.Clear();
+                List<Table> tableList = TableDAO.Instance.LoadTableList();
+                foreach (Table table in tableList)
                 {
+                    Button btn = new Button() { Width = 100, Height = 60 };
+                    btn.Text = $"{table.Name}\n{table.Status}";
+                    btn.Tag = table.ID;
+                    if (table.Status == "Trống")
+                    {
+                        btn.BackColor = Color.LightGreen;
+                    }
+                    else
+                    {
+                        btn.BackColor = Color.LightPink;
+                    }  
+                    btn.Click += (s, e) => Button btn = new Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
+                    btn.Text = item.ViTri + Environment.NewLine + item.TrangThai;
+                    btn.Click += btn_Click;
+                    btn.Tag = item;
+                    switch (item.TrangThai)
+
+                    {
                     _currentTableId = (int)((Button)s).Tag;
                     ShowBill(_currentTableId);
+                    }
                 };
 
                 fLP_Table.Controls.Add(btn);
-            }
-
         }
+
 
         void ShowBill(int maBan)
         {
@@ -173,10 +171,10 @@ namespace HappyCoffeeApp
 
             // Lấy tổng tiền chưa thanh toán
             object result = DataProvider.Instance.ExecuteScalar(@"
-        SELECT SUM(ct.SoLuong * ct.DonGia)
-        FROM ChiTietHoaDon ct
-        JOIN HoaDon hd ON hd.MaHD = ct.MaHD
-        WHERE hd.MaBan=@p0 AND hd.TrangThai = N'Chưa thanh toán'",
+                    SELECT SUM(ct.SoLuong * ct.DonGia)
+                    FROM ChiTietHoaDon ct
+                    JOIN HoaDon hd ON hd.MaHD = ct.MaHD
+                    WHERE hd.MaBan=@p0 AND hd.TrangThai = N'Chưa thanh toán'",
                 new object[] { _currentTableId });
 
             decimal total = (result == null || result == DBNull.Value) ? 0 : Convert.ToDecimal(result);
@@ -348,22 +346,22 @@ namespace HappyCoffeeApp
             LoadTable();
 
 
-        }
-        private void btn_Check_Click(object sender, EventArgs e)
-        {
-            Table table = lsv_Bill.Tag as Table;
-            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.MaBan);
+        //private void btn_Check_Click(object sender, EventArgs e)
+        //{
+        //    Table table = lsv_Bill.Tag as Table;
+        //    int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.MaBan);
 
-            if (idBill != -1)
-            {
-                if (MessageBox.Show("Bạn có chắc thanh toán hóa đơn cho bàn " + table.ViTri, "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-                {
-                    BillDAO.Instance.CheckOut(idBill);
-                    ShowBill(table.MaBan);
-                    LoadTable();
-                }
+        //    if (idBill != -1)
+        //    {
+        //        if (MessageBox.Show("Bạn có chắc thanh toán hóa đơn cho bàn " + table.ViTri, "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+        //        {
+        //            BillDAO.Instance.CheckOut(idBill);
+        //            ShowBill(table.MaBan);
+        //            LoadTable();
+        //        }
 
-            }
+        //    }
+        //}
 
         private void cbFood_SelectedIndexChanged(object sender, EventArgs e)
         {
