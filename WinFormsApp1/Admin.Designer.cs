@@ -1,4 +1,5 @@
-﻿namespace HappyCoffeeApp
+﻿
+namespace HappyCoffeeApp
 {
     partial class Admin
     {
@@ -83,7 +84,7 @@
             btn_ResetPass = new Button();
             cmb_AccountType = new ComboBox();
             label12 = new Label();
-            txt_DisplayName = new TextBox();
+            txt_Password = new TextBox();
             label10 = new Label();
             label11 = new Label();
             txt_UserName = new TextBox();
@@ -629,7 +630,7 @@
             panel9.Controls.Add(btn_ResetPass);
             panel9.Controls.Add(cmb_AccountType);
             panel9.Controls.Add(label12);
-            panel9.Controls.Add(txt_DisplayName);
+            panel9.Controls.Add(txt_Password);
             panel9.Controls.Add(label10);
             panel9.Controls.Add(label11);
             panel9.Controls.Add(txt_UserName);
@@ -665,12 +666,12 @@
             label12.TabIndex = 10;
             label12.Text = "Loại tài khoản:";
             // 
-            // txt_DisplayName
+            // txt_Password
             // 
-            txt_DisplayName.Location = new Point(122, 57);
-            txt_DisplayName.Name = "txt_DisplayName";
-            txt_DisplayName.Size = new Size(217, 27);
-            txt_DisplayName.TabIndex = 9;
+            txt_Password.Location = new Point(122, 57);
+            txt_Password.Name = "txt_Password";
+            txt_Password.Size = new Size(217, 27);
+            txt_Password.TabIndex = 9;
             // 
             // label10
             // 
@@ -773,6 +774,16 @@
             ResumeLayout(false);
         }
 
+        private void btn_EditCategory_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btn_AddCategory_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         private TabControl tbc_Admin;
@@ -827,7 +838,7 @@
         private Label label9;
         private DataGridView dGv_accCount;
         private Panel panel9;
-        private TextBox txt_DisplayName;
+        private TextBox txt_Password;
         private Label label10;
         private Label label11;
         private TextBox txt_UserName;

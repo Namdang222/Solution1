@@ -35,12 +35,37 @@ namespace HappyCoffeeApp.DAO
             //    // Add the drink to a collection or process it as needed
             //}
         }
-        public List<Drink> GetListDrinkByCategoryID(int id)
+        public List<Drink> GetDrinkByCategoryID(int id)
         {
             var list = new List<Drink>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT MaSP, TenSP, DonGia, MaLoaiSanPham FROM SanPham");
-            foreach (DataRow r in data.Rows) list.Add(new Drink(r));
+            string query = "SELECT MaSP, TenSP, DonGia, MaLoaiSanPham FROM SanPham WHERE MaLoaiSanPham = @id";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, [id]);
+
+            foreach (DataRow r in data.Rows)
+                list.Add(new Drink(r));
+
             return list;
+        }
+
+        public bool InsertDrink(string name, int categoryId, float price)
+        {
+            string query = "INSERT INTO Drink (Name, CategoryID, Price) VALUES (@name, @categoryId, @price)";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { name, categoryId, price });
+            return result > 0;
+        }
+
+        public bool DeleteDrink(int drinkId)
+        {
+            string query = "DELETE FROM Drink WHERE ID = @id";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { drinkId });
+            return result > 0;
+        }
+
+        public bool UpdateDrink(int drinkId, string name, int categoryId, float price)
+        {
+            string query = "UPDATE Drink SET Name = @name, CategoryID = @categoryId, Price = @price WHERE ID = @id";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { name, categoryId, price, drinkId });
+            return result > 0;
         }
     }
 }

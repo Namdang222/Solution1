@@ -28,7 +28,7 @@ namespace HappyCoffeeApp
 
         void ChangeAccount(Account acc)
         {
-            txt_name.Text = LoginAccount.UserName;
+            txt_name.Text = LoginAccount.Username;
             txt_DisplayName.Text = LoginAccount.DisplayName;
         }
 

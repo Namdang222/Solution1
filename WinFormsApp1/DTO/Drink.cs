@@ -61,5 +61,6 @@ namespace HappyCoffeeApp.DTO
 
         }
 
+        public int CategoryID { get; internal set; }
     }
 }

@@ -13,7 +13,8 @@ CREATE TABLE KhachHang (
 -- Bảng TaiKhoan
 CREATE TABLE TaiKhoan (
     TenDangNhap VARCHAR(50) PRIMARY KEY,
-    MatKhau VARCHAR(100)
+    MatKhau VARCHAR(100),
+    ChucVu NVARCHAR(50)
 );
 -- Bảng NhanVien
 CREATE TABLE NhanVien (

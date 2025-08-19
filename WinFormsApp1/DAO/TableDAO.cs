@@ -44,14 +44,10 @@ namespace HappyCoffeeApp.DAO
             string sql = "DELETE FROM Ban WHERE MaBan=@p0";
             return DataProvider.Instance.ExecuteNonQuery(sql, new object[] { maBan }) > 0;
         }
-
-        //DataTable data = DataProvider.Instance.ExecuteQuery("USP_GetTableList");
-        //    foreach (DataRow item in Data.Rows)
-        //    {
-        //        Table table = new Table(item);
-        //        tableList.Add(Table)
-        //    }
-        //    DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM TableFood");
-        //    return tableList;
+        public void SwitchTable(int fromTableId, int toTableId)
+        {
+            string query = "UPDATE Bill SET MaBan = @toTableId WHERE MaBan = @fromTableId AND TrangThai = 0";
+            DataProvider.Instance.ExecuteNonQuery(query, new object[] { toTableId, fromTableId });
+        }
     }
 }

@@ -14,10 +14,12 @@ namespace HappyCoffeeApp
     public partial class TableManager : Form
     {
         private Account loginAccount;
+        private int _currentTableId;
+
         public Account LoginAccount
         {
             get { return loginAccount; }
-            set { loginAccount = value; ChangeAccount(loginAccount.Type); }
+            set { loginAccount = value; ChangeAccount(loginAccount.Id); }
         }
         public TableManager(Account acc)
 
@@ -72,38 +74,33 @@ namespace HappyCoffeeApp
 
         public void LoadTable()
         {
-                fLP_Table.Controls.Clear();
-                List<Table> tableList = TableDAO.Instance.LoadTableList();
-                foreach (Table table in tableList)
+            fLP_Table.Controls.Clear();
+            List<Table> tableList = TableDAO.Instance.LoadTableList();
+            foreach (Table table in tableList)
+            {
+                Button btn = new Button()
                 {
-                    Button btn = new Button() { Width = 100, Height = 60 };
-                    btn.Text = $"{table.Name}\n{table.Status}";
-                    btn.Tag = table.ID;
-                    if (table.Status == "Trống")
-                    {
-                        btn.BackColor = Color.LightGreen;
-                    }
-                    else
-                    {
-                        btn.BackColor = Color.LightPink;
-                    }  
-                    btn.Click += (s, e) => Button btn = new Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
-                    btn.Text = item.ViTri + Environment.NewLine + item.TrangThai;
-                    btn.Click += btn_Click;
-                    btn.Tag = item;
-                    switch (item.TrangThai)
-
-                    {
-                    _currentTableId = (int)((Button)s).Tag;
-                    ShowBill(_currentTableId);
-                    }
+                    Width = 100,
+                    Height = 60,
+                    Text = $"{table.ViTri}\n{table.TrangThai}",
+                    Tag = table.MaBan
                 };
 
+                // Đổi màu theo trạng thái
+                btn.BackColor = table.TrangThai == "Trống" ? Color.LightGreen : Color.LightPink;
+
+                // Gán sự kiện click
+                btn.Click += (s, e) =>
+                {
+                    int tableId = (int)((Button)s).Tag;
+                    _currentTableId = tableId;
+                    ShowBill(tableId);
+                };
+                // Thêm button vào giao diện
                 fLP_Table.Controls.Add(btn);
+            }
         }
-
-
-        void ShowBill(int maBan)
+        private void ShowBill(int maBan)
         {
             lsv_Bill.Items.Clear();
             List<Menu> listBillInfo = MenuDAO.Instance.GetListMenuByTable(maBan);
@@ -111,11 +108,7 @@ namespace HappyCoffeeApp
 
             foreach (Menu item in listBillInfo)
             {
-
                 ListViewItem lsvItem = new ListViewItem(item.FoodName);
-
-                ListViewItem lsvItem = new ListViewItem(item.DrinkName.ToString());
-
                 lsvItem.SubItems.Add(item.Count.ToString());
                 lsvItem.SubItems.Add(item.Price.ToString("n0"));
                 lsvItem.SubItems.Add(item.TotalPrice.ToString("n0"));
@@ -125,6 +118,7 @@ namespace HappyCoffeeApp
 
             txbTotalPrice.Text = totalPrice.ToString("n0", CultureInfo.InvariantCulture);
         }
+
 
         private void cmb_Category_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -246,31 +240,21 @@ namespace HappyCoffeeApp
         {
 
             cmb_Switch.DataSource = TableDAO.Instance.LoadTableList();
-            cmb_Switch.DisplayMember = "Name";
-            cmb_Switch.ValueMember = "ID";
+            cmb_Switch.DisplayMember = "ViTri";   // hoặc "TenBan" nếu bạn có
+            cmb_Switch.ValueMember = "MaBan";     // đúng với lớp Table
 
-            int id = 0;
 
-            ComboBox cb = sender as ComboBox;
-            if (cb.SelectedItem == null)
-                return;
-
-            Category selected = cb.SelectedItem as Category;
-            id = selected.MaSP;
-
-            LoadDrinkListByCategoryID(id);
 
         }
 
         private void btn_SwitchTable_Click(object sender, EventArgs e)
         {
-
             if (_currentTableId < 0)
             {
                 MessageBox.Show("Vui lòng chọn bàn để chuyển.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
 
-            // Kiểm tra bàn đã chọn
             if (lsv_Bill.Tag == null)
             {
                 MessageBox.Show("Vui lòng chọn bàn trước khi thêm món.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -279,7 +263,6 @@ namespace HappyCoffeeApp
 
             Table table = lsv_Bill.Tag as Table;
 
-            // Kiểm tra món đã chọn
             if (cbFood.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn món trước khi thêm vào hóa đơn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -296,21 +279,18 @@ namespace HappyCoffeeApp
                 return;
             }
 
-            // Kiểm tra hóa đơn hiện tại của bàn
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.MaBan);
 
             if (idBill == -1)
             {
-                // Nếu chưa có hóa đơn → tạo mới
                 BillDAO.Instance.InsertBill(table.MaBan);
-                int newBillID = BillDAO.Instance.GetMaxIDBill();
-                BillInfoDAO.Instance.InsertBillInfo(newBillID, drinkID, count);
-           }
+                idBill = BillDAO.Instance.GetMaxBillID();
+            }
 
             int targetTableId = (int)cmb_Switch.SelectedValue;
+
             if (targetTableId == _currentTableId)
             {
-
                 MessageBox.Show("Không thể chuyển sang cùng bàn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -318,51 +298,24 @@ namespace HappyCoffeeApp
             if (MessageBox.Show($"Bạn có chắc chắn muốn chuyển bàn {_currentTableId} sang bàn {targetTableId}?",
                 "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                // Chuyển hóa đơn
                 TableDAO.Instance.SwitchTable(_currentTableId, targetTableId);
 
-                // Cập nhật trạng thái bàn
-                DataProvider.Instance.ExecuteNonQuery(
-                    "UPDATE Ban SET TrangThai = N'Trống' WHERE MaBan = @p0",
-                    new object[] { _currentTableId });
+                DataProvider.Instance.ExecuteNonQuery("UPDATE Ban SET TrangThai = N'Trống' WHERE MaBan = @p0", new object[] { _currentTableId });
+                DataProvider.Instance.ExecuteNonQuery("UPDATE Ban SET TrangThai = N'Có khách' WHERE MaBan = @p0", new object[] { targetTableId });
 
-                DataProvider.Instance.ExecuteNonQuery(
-                    "UPDATE Ban SET TrangThai = N'Có khách' WHERE MaBan = @p0",
-                    new object[] { targetTableId });
-
-                // Load lại bảng và hóa đơn
                 LoadTable();
                 ShowBill(targetTableId);
 
-                // Cập nhật _currentTableId sang bàn mới
                 _currentTableId = targetTableId;
 
-                // Nếu đã có hóa đơn → thêm món vào hóa đơn đó
                 BillInfoDAO.Instance.InsertBillInfo(idBill, drinkID, count);
             }
 
-            // Hiển thị lại hóa đơn và cập nhật trạng thái bàn
             ShowBill(table.MaBan);
             LoadTable();
 
-
-        //private void btn_Check_Click(object sender, EventArgs e)
-        //{
-        //    Table table = lsv_Bill.Tag as Table;
-        //    int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.MaBan);
-
-        //    if (idBill != -1)
-        //    {
-        //        if (MessageBox.Show("Bạn có chắc thanh toán hóa đơn cho bàn " + table.ViTri, "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-        //        {
-        //            BillDAO.Instance.CheckOut(idBill);
-        //            ShowBill(table.MaBan);
-        //            LoadTable();
-        //        }
-
-        //    }
-        //}
-
+        }
+        
         private void cbFood_SelectedIndexChanged(object sender, EventArgs e)
         {
           

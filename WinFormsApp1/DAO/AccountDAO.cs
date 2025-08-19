@@ -43,12 +43,11 @@ namespace HappyCoffeeApp.DAO
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO TaiKhoan (TenDangNhap, MatKhau, Role) VALUES (@username, @password, @role)";
+                string query = "INSERT INTO TaiKhoan (TenDangNhap, MatKhau) VALUES (@username, @password)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@username", acc.TenDangNhap);
-                    cmd.Parameters.AddWithValue("@password", acc.MatKhau);
-                    cmd.Parameters.AddWithValue("@role", acc.Role);
+                    cmd.Parameters.AddWithValue("@username", acc.Username);
+                    cmd.Parameters.AddWithValue("@password", acc.Password);
                     conn.Open();
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -62,9 +61,8 @@ namespace HappyCoffeeApp.DAO
                 string query = "UPDATE TaiKhoan SET MatKhau=@password, Role=@role WHERE TenDangNhap=@username";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@username", acc.TenDangNhap);
-                    cmd.Parameters.AddWithValue("@password", acc.MatKhau);
-                    cmd.Parameters.AddWithValue("@role", acc.Role);
+                    cmd.Parameters.AddWithValue("@username", acc.Username);
+                    cmd.Parameters.AddWithValue("@password", acc.Password);
                     conn.Open();
                     return cmd.ExecuteNonQuery() > 0;
                 }

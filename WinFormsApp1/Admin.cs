@@ -44,6 +44,11 @@ namespace HappyCoffeeApp
             btn_ViewTable.Click += btn_ViewTable_Click;
         }
 
+        private void btn_DelCaregory_Click(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void LoadAll()
         {
             categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
@@ -85,7 +90,7 @@ namespace HappyCoffeeApp
         private void AddAccountBinding()
         {
             txt_UserName.DataBindings.Add("Text", accountList, "TenDangNhap", true, DataSourceUpdateMode.Never);
-            txt_DisplayName.DataBindings.Add("Text", accountList, "MatKhau", true, DataSourceUpdateMode.Never);
+            txt_Password.DataBindings.Add("Text", accountList, "MatKhau", true, DataSourceUpdateMode.Never);
         }
         #endregion
 
@@ -108,7 +113,7 @@ namespace HappyCoffeeApp
         private void btn_AddDrinks_Click(object sender, EventArgs e)
         {
             string name = txt_NameDrinks.Text.Trim();
-            decimal price = num_Price.Value;
+            float price = (float)num_Price.Value;
 
             if (string.IsNullOrEmpty(name))
             {
@@ -116,7 +121,6 @@ namespace HappyCoffeeApp
                 return;
             }
 
-            // Lấy CategoryID an toàn
             int categoryId = 0;
             if (cmb_DrinksCategory.SelectedItem is Category category)
                 categoryId = category.ID;
@@ -126,12 +130,13 @@ namespace HappyCoffeeApp
                 return;
             }
 
-            if (DrinkDAO.Instance.InsertDrink(name, price, categoryId))
+            if (DrinkDAO.Instance.InsertDrink(name, categoryId, price))
             {
                 MessageBox.Show("Thêm đồ uống thành công!");
                 drinkList.DataSource = DrinkDAO.Instance.GetDrinkByCategoryID(categoryId);
             }
             else MessageBox.Show("Thêm thất bại!");
+
         }
 
         private void btb_DelDrinks_Click(object sender, EventArgs e)
@@ -140,7 +145,7 @@ namespace HappyCoffeeApp
             Drink drink = dgV_Drinks.CurrentRow.DataBoundItem as Drink;
             if (drink == null) return;
 
-            if (DrinkDAO.Instance.DeleteDrink(drink.ID))
+            if (DrinkDAO.Instance.DeleteDrink(drink.MaSP))
             {
                 MessageBox.Show("Xóa đồ uống thành công!");
                 int categoryId = drink.CategoryID;
@@ -155,7 +160,7 @@ namespace HappyCoffeeApp
             if (!(dgV_Drinks.CurrentRow.DataBoundItem is Drink drink)) return;
 
             string name = txt_NameDrinks.Text.Trim();
-            decimal price = num_Price.Value;
+            float price = (float)num_Price.Value;
 
             if (string.IsNullOrEmpty(name))
             {
@@ -163,7 +168,6 @@ namespace HappyCoffeeApp
                 return;
             }
 
-            // Lấy CategoryID an toàn
             int categoryId = 0;
             if (cmb_DrinksCategory.SelectedItem is Category category)
                 categoryId = category.ID;
@@ -173,13 +177,13 @@ namespace HappyCoffeeApp
                 return;
             }
 
-            if (DrinkDAO.Instance.UpdateDrink(drink.ID, name, price, categoryId))
+            if (DrinkDAO.Instance.UpdateDrink(drink.MaSP, name, categoryId, price))
             {
                 MessageBox.Show("Cập nhật thành công!");
-                // Cập nhật lại danh sách theo danh mục hiện tại
                 drinkList.DataSource = DrinkDAO.Instance.GetDrinkByCategoryID(categoryId);
             }
             else MessageBox.Show("Cập nhật thất bại!");
+
         }
         private void dgV_Drinks_SelectionChanged(object sender, EventArgs e)
         {
@@ -188,8 +192,8 @@ namespace HappyCoffeeApp
                 Drink drink = dgV_Drinks.CurrentRow.DataBoundItem as Drink;
                 if (drink == null) return;
 
-                txt_NameDrinks.Text = drink.Name;
-                num_Price.Value = drink.Price;
+                txt_NameDrinks.Text = drink.TenSP;
+                num_Price.Value = (decimal)drink.DonGia;
 
                 // Gán SelectedValue chỉ khi ComboBox đã có DataSource và ValueMember
                 if (cmb_DrinksCategory.DataSource != null
@@ -210,37 +214,37 @@ namespace HappyCoffeeApp
 
         #endregion
         #region Category CRUD
-        private void btn_AddCategory_Click(object sender, EventArgs e)
-        {
-            string name = txt_DangMucCaregory.Text;
-            if (CategoryDAO.Instance.InsertCategory(name))
-            {
-                MessageBox.Show("Thêm danh mục thành công!");
-                categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
-            }
-            else MessageBox.Show("Thêm thất bại!");
-        }
-        private void btn_DelCaregory_Click(object sender, EventArgs e)
-        {
-            int id = Convert.ToInt32(textBox3.Text);
-            if (CategoryDAO.Instance.DeleteCategory(id))
-            {
-                MessageBox.Show("Xóa danh mục thành công!");
-                categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
-            }
-            else MessageBox.Show("Xóa thất bại!");
-        }
-        private void btn_EditCategory_Click(object sender, EventArgs e)
-        {
-            int id = Convert.ToInt32(textBox3.Text);
-            string name = txt_DangMucCaregory.Text;
-            if (CategoryDAO.Instance.UpdateCategory(id, name))
-            {
-                MessageBox.Show("Cập nhật danh mục thành công!");
-                categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
-            }
-            else MessageBox.Show("Cập nhật thất bại!");
-        }
+        //private void btn_AddCategory_Click(object sender, EventArgs e)
+        //{
+        //    string name = txt_DangMucCaregory.Text;
+        //    if (CategoryDAO.Instance.InsertCategory(name))
+        //    {
+        //        MessageBox.Show("Thêm danh mục thành công!");
+        //        categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
+        //    }
+        //    else MessageBox.Show("Thêm thất bại!");
+        //}
+        //private void btn_DelCaregory_Click(object sender, EventArgs e)
+        //{
+        //    int id = Convert.ToInt32(textBox3.Text);
+        //    if (CategoryDAO.Instance.DeleteCategory(id))
+        //    {
+        //        MessageBox.Show("Xóa danh mục thành công!");
+        //        categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
+        //    }
+        //    else MessageBox.Show("Xóa thất bại!");
+        //}
+        //private void btn_EditCategory_Click(object sender, EventArgs e)
+        //{
+        //    int id = Convert.ToInt32(textBox3.Text);
+        //    string name = txt_DangMucCaregory.Text;
+        //    if (CategoryDAO.Instance.UpdateCategory(id, name))
+        //    {
+        //        MessageBox.Show("Cập nhật danh mục thành công!");
+        //        categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
+        //    }
+        //    else MessageBox.Show("Cập nhật thất bại!");
+        //}
         private void btn_ViewCategory_Click(object sender, EventArgs e)
         {
             categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
@@ -287,7 +291,7 @@ namespace HappyCoffeeApp
             string name = txt_TableName.Text;
             string status = cmb_TableStatus.Text;
 
-            if (TableDAO.Instance.UpdateTable(table.ID, name, status))
+            if (TableDAO.Instance.UpdateTable(table.MaBan, name, status))
             {
                 MessageBox.Show("Cập nhật bàn thành công!");
                 tableList.DataSource = TableDAO.Instance.LoadTableList();
@@ -309,7 +313,7 @@ namespace HappyCoffeeApp
         private void btn_addAccount_Click(object sender, EventArgs e)
         {
             string role = cmb_AccountType.SelectedItem?.ToString() ?? "User";
-            Account acc = new Account(txt_UserName.Text, txt_DisplayName.Text, role);
+            Account acc = new Account(txt_UserName.Text, txt_Password.Text, role);
             if (AccountDAO.Instance.InsertAccount(acc))
             {
                 MessageBox.Show("Thêm tài khoản thành công!");
@@ -320,7 +324,7 @@ namespace HappyCoffeeApp
         private void btn_editAccount_Click(object sender, EventArgs e)
         {
             string role = cmb_AccountType.SelectedItem?.ToString() ?? "User";
-            Account acc = new Account(txt_UserName.Text, txt_DisplayName.Text, role);
+            Account acc = new Account(txt_UserName.Text, txt_Password.Text, role);
             if (AccountDAO.Instance.UpdateAccount(acc))
             {
                 MessageBox.Show("Cập nhật thành công!");
@@ -355,9 +359,9 @@ namespace HappyCoffeeApp
             Account acc = dGv_accCount.CurrentRow.DataBoundItem as Account;
             if (acc == null) return;
 
-            txt_UserName.Text = acc.TenDangNhap;
-            txt_DisplayName.Text = acc.MatKhau;
-            cmb_AccountType.SelectedItem = acc.Role; // bind Role đúng với combo
+            txt_UserName.Text = acc.Username;
+            txt_Password.Text = acc.Password;
+            cmb_AccountType.SelectedItem = acc.DisplayName; // bind Role đúng với combo
         }
         #endregion
         #region View Bill

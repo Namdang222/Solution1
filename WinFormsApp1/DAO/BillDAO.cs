@@ -57,5 +57,17 @@ namespace HappyCoffeeApp.DAO
                 "UPDATE HoaDon SET TrangThai=N'Đã thanh toán', TongTien=@p0 WHERE MaHD=@p1",
                 new object[] { totalPrice, maHD });
         }
+        public void InsertBill(int tableId)
+        {
+            string query = "INSERT INTO Bill (MaBan, NgayLap, TrangThai) VALUES (@tableId, GETDATE(), 0)";
+            DataProvider.Instance.ExecuteNonQuery(query, new object[] { tableId });
+        }
+
+        public int GetMaxBillID()
+        {
+            string query = "SELECT MAX(MaHD) FROM Bill";
+            object result = DataProvider.Instance.ExecuteScalar(query);
+            return result != DBNull.Value ? Convert.ToInt32(result) : -1;
+        }
     }
 }

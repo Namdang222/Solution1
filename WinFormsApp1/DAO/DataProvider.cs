@@ -11,7 +11,7 @@ namespace HappyCoffeeApp.DAO
         private static DataProvider instance;
         public static DataProvider Instance => instance ??= new DataProvider();
         private string connectionString =
-            "Data Source=MATILDA Catalog=PRO131;Integrated Security=True;Trust Server Certificate=True";
+            "Data Source=Matilda;Initial Catalog=PRO131;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
         // Lấy danh sách tên param xuất hiện trong query theo thứ tự
         private List<string> GetParameterNames(string query)
