@@ -12,14 +12,14 @@ namespace HappyCoffeeApp.DAO
         public static AccountDAO Instance => instance ??= new AccountDAO();
         private AccountDAO() { }
 
-        private string connectionString = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=PRO131;Integrated Security=True;Trust Server Certificate=True";
+        private string connectionString = @"Data Source=MATILDA;Initial Catalog=PRO131;Integrated Security=True;Trust Server Certificate=True";
 
         public List<Account> GetAllAccounts()
         {
             List<Account> list = new List<Account>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT TenDangNhap, MatKhau, Role FROM TaiKhoan";
+                string query = "SELECT UserName, Password, DisplayName FROM TaiKhoan";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();
@@ -28,9 +28,9 @@ namespace HappyCoffeeApp.DAO
                         while (reader.Read())
                         {
                             list.Add(new Account(
-                                reader["TenDangNhap"].ToString(),
-                                reader["MatKhau"].ToString(),
-                                reader["Role"].ToString()
+                                reader["UserName"].ToString(),
+                                reader["Password"].ToString(),
+                                reader["DisplayName"].ToString()
                             ));
                         }
                     }
@@ -43,7 +43,7 @@ namespace HappyCoffeeApp.DAO
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO TaiKhoan (TenDangNhap, MatKhau) VALUES (@username, @password)";
+                string query = "INSERT INTO TaiKhoan (UserName, Password) VALUES (@username, @password)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@username", acc.Username);
@@ -73,7 +73,7 @@ namespace HappyCoffeeApp.DAO
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM TaiKhoan WHERE TenDangNhap=@username";
+                string query = "DELETE FROM TaiKhoan WHERE UserName=@username";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
@@ -87,7 +87,7 @@ namespace HappyCoffeeApp.DAO
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "UPDATE TaiKhoan SET MatKhau='123' WHERE TenDangNhap=@username";
+                string query = "UPDATE TaiKhoan SET Password='123' WHERE UserName=@username";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
@@ -104,7 +104,7 @@ namespace HappyCoffeeApp.DAO
 
         public Account GetAccountByUserName(string userName)
         {
-            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from account where userName = '" +  userName + "'");
+            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from TaiKhoan where UserName = '" +  userName + "'");
             foreach (DataRow item in data.Rows)
             {
                 return new Account(item);

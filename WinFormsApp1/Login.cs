@@ -50,7 +50,7 @@ namespace HappyCoffeeApp
         }
         bool login(string username, string password)
         {
-            string query = "SELECT 1 FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
+            string query = "SELECT 1 FROM TaiKhoan WHERE UserName = @username AND Password = @password";
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { username, password });
             return Convert.ToInt32(result) > 0;
 

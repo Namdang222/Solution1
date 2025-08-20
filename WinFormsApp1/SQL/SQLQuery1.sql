@@ -1,28 +1,35 @@
-﻿CREATE DATABASE PRO131
+﻿--Xóa DATABASE nếu đã có
+USE master
+GO
+DROP DATABASE PRO131
+GO
+--Tạo DATABASE 
+CREATE DATABASE PRO131
 GO
 USE PRO131
 GO
 --Tạo Bảng
 -- Bảng KhachHang
 CREATE TABLE KhachHang (
-    MaKhachHang INT PRIMARY KEY,
+    MaKH INT PRIMARY KEY,
     HoTen NVARCHAR(100),
     sdt VARCHAR(15),
     DanhGia INT
 );
 -- Bảng TaiKhoan
 CREATE TABLE TaiKhoan (
-    TenDangNhap VARCHAR(50) PRIMARY KEY,
-    MatKhau VARCHAR(100),
-    ChucVu NVARCHAR(50)
+	Id INT PRIMARY KEY,
+    UserName VARCHAR(50),
+    Password VARCHAR(100),
+	DisplayName NVARCHAR(50)
 );
 -- Bảng NhanVien
 CREATE TABLE NhanVien (
     MaNhanVien INT PRIMARY KEY,
     HoTen NVARCHAR(100),
-    MaTaiKhoan VARCHAR(50),
+    Id INT,
     VaiTro NVARCHAR(50),
-    FOREIGN KEY (MaTaiKhoan) REFERENCES TaiKhoan(TenDangNhap)
+    FOREIGN KEY (Id) REFERENCES TaiKhoan(Id)
 );
 -- Bảng Ban
 CREATE TABLE Ban (
@@ -60,7 +67,7 @@ CREATE TABLE HoaDon (
     MaBan INT,
     MaKhuyenMai INT,
     TongTien DECIMAL(15,2),
-    FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKhachHang),
+    FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH),
     FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNhanVien),
     FOREIGN KEY (MaBan) REFERENCES Ban(MaBan),
     FOREIGN KEY (MaKhuyenMai) REFERENCES KhuyenMai(MaKhuyenMai)
@@ -124,28 +131,29 @@ EXEC ThemKhachHang 2, N'Trần Thị B', '0912345678', 4;
 
 --Thêm Tài Khoản
 CREATE PROCEDURE ThemTaiKhoan
-    @TenDangNhap VARCHAR(50),
-    @MatKhau VARCHAR(100)
+	@Id INT,
+    @UserName VARCHAR(50),
+    @PassWord VARCHAR(100)
 AS
 BEGIN
-    INSERT INTO TaiKhoan(TenDangNhap,MatKhau) VALUES (@TenDangNhap, @MatKhau);
+    INSERT INTO TaiKhoan(Id, UserName, PassWord) VALUES (@Id, @UserName, @PassWord);
 END;
-EXEC ThemTaiKhoan 'admin','1';
-EXEC ThemTaiKhoan 'nhanvien01', '123456';
+EXEC ThemTaiKhoan 1,'admin','1';
+EXEC ThemTaiKhoan 2,'nhanvien01', '123456';
 SELECT * FROM TaiKhoan
 
 --Thêm nhân viên
 CREATE PROCEDURE ThemNhanVien
     @MaNhanVien INT,
     @HoTen NVARCHAR(100),
-    @MaTaiKhoan VARCHAR(50),
+    @Id INT,
     @VaiTro NVARCHAR(50)
 AS
 BEGIN
-    INSERT INTO NhanVien VALUES (@MaNhanVien, @HoTen, @MaTaiKhoan, @VaiTro);
+    INSERT INTO NhanVien VALUES (@MaNhanVien, @HoTen, @Id, @VaiTro);
 END;
-EXEC ThemNhanVien 101, N'Phạm Văn C', 'nhanvien01', N'Phục vụ';
-EXEC ThemNhanVien 102, N'Lê Thị D', 'admin', N'Quản lý';
+EXEC ThemNhanVien 101, N'Phạm Văn C', 2, N'Phục vụ';
+EXEC ThemNhanVien 102, N'Lê Thị D', 1, N'Quản lý';
 
 --Thêm Bàn
 CREATE PROCEDURE ThemBan
